@@ -66,41 +66,41 @@ téléchargement.
 Dans le menu "Fichier", cliquer sur "Nouvelle machine virtuelle", puis suivre
 le guide.
 
-tp0_newvm_step1.png
+![Impression d'écran étape 1](pictures/tp0_newvm_step1.png)
 
 Laisser le choix par défaut d'utiliser un média d'installation de type
 ISO ou CD-ROM.
 
-tp0_newvm_step2_1.png
+![Impression d'écran étape 2.1](pictures/tp0_newvm_step2_1.png)
 
 Lors du choix du média d'installation, cliquer sur "Parcour..."
 
-tp0_newvm_step2_2.png
+![Impression d'écran étape 2.2](pictures/tp0_newvm_step2_2.png)
 
 Dans ce nouveau menu, cliquer sur "Parcourir en local".
 
-tp0_newvm_step2_3.png
+![Impression d'écran étape 2.3](pictures/tp0_newvm_step2_3.png)
 
 Rechercher l'image ISO, qui doit se trouver dans le répertoire
 "Téléchargements".
 
-tp0_newvm_step2_4.png
+![Impression d'écran étape 2.4](pictures/tp0_newvm_step2_4.png)
 
 Une fois l'image sélectionnée, sélectionner le système d'exploitation en
 décochant "Détecter automatiquement depuis la source/média d'installation" et
 en tapant le début du nom de la distribution. Prendre la version la plus
 récente, même si elle n'est pas au même niveau que la version téléchargée.
 
-tp0_newvm_step3.png
+![Impression d'écran étape 3](pictures/tp0_newvm_step3.png)
 
 Il est possible de spécifier la quantité de mémoire vive et le nombre de
 processeurs, mais laisser les paramètres par défaut pour le moment.
 
-tp0_newvm_step4.png
+![Impression d'écran étape 4](pictures/tp0_newvm_step4.png)
 
 De même, laisser les paramètres de stockage tels quels.
 
-tp0_newvm_step5.png
+![Impression d'écran étape 5](pictures/tp0_newvm_step5.png)
 
 Enfin, personnaliser le nom de la machine virtuelle, ici simplement "alpine". À
 noter que dans ce résumé des propriétés de la machine virtuelle, lors du
