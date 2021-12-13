@@ -49,7 +49,7 @@ Une fois l'ordinateur redémarré, lancer l'application "Virtual Machine
 Manager". Celle-ci va permettre de gérer tous les aspects des machines
 virtuelles, à commencer par leur installation.
 
-Impression d'écran : pictures/tp0_vmm.png
+![Impression d'écran de virt-manager](pictures/tp0_vmm.png)
 
 Maintenant installons notre première machine virtuelle. Pour cela nous allons
 télécharger un système assez léger qui se lance sans installation : Alpine
