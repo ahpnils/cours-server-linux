@@ -1,9 +1,11 @@
 # TP 4 : installation automatisée
 
-Objectif :
+Objectifs :
 
-- installer un troisème serveur (presque) sans interaction manuelle
-
+- installer un troisème serveur (presque) sans interaction manuelle ;
+- personnaliser un fichier d'installation automatisée ;
+- installer et réinstaller plusieurs machines virtuelles légèrement différentes
+  (presque) sans interaction manuelle.
 
 ## Introduction
 
@@ -20,7 +22,6 @@ Python dispose d'un module permettant de lancer un serveur web en une commande,
 nous allons l'utiliser pour rendre notre fichier preseed accessible.
 
 Lancer la commande `python3 -m http.server 8080`.
-
 
 ## Etape 1 : lecture du fichier preseed
 
@@ -71,7 +72,7 @@ Question 5 : quels sont les paramètres réseau de cette machine virtuelle ?
 
 Eteindre et supprimer les machines virtuelles présentes sur l'hôte.
 Puis, modifier et copier le fichier preseed.cfg pour créer 3 machines
-virtuelles server-11, server-12, server-13. Ces 3 machines virtuelles
+virtuelles server-11, server-12, et server-13. Ces 3 machines virtuelles
 comporteront les paramètres suivants :
 
 - pour server-11, son IP sera 192.168.122.11 ;
