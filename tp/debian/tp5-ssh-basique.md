@@ -22,8 +22,8 @@ fichiers, locaux mais aussi distants.
 ## Etape 0 : premières connexions SSH
 
 Pour se connecter à distance à la machine server-11, lancer la commande
-suivante : `ssh student@192.168.122.11`. Le format est donc *ssh
-<utilisateur>@<adresse IP ou nom>*. À la première connexion, une empreinte de
+suivante : `ssh student@192.168.122.11`. Le format est donc `ssh
+<utilisateur>@<adresse IP ou nom>`. À la première connexion, une empreinte de
 clé est affichée et OpenSSH demande une confirmation avant de continuer la
 connexion. Il s'agit du principe
 [TOFU](https://en.wikipedia.org/wiki/Trust_on_first_use). Le mot de passe est
