@@ -19,8 +19,8 @@ Créer une nouvelle machine virtuelle avec les paramètres suivants :
 - système d'exploitation Debian 11 ;
 - 1 vcpu ;
 - 1024 Mo de mémoire vive ;
-- un disque de 10 Gio dans le pool "student_images", nommé `server-11.qcow2` ;
-- nom : server-11 ;
+- un disque de 10 Gio dans le pool "student_images", nommé `server11.qcow2` ;
+- nom : server11 ;
 - réseau virtuel "default", en NAT.
 
 ## Etape 1 : installation de Debian
@@ -35,7 +35,7 @@ Paramétrer les options suivantes :
 - location : other > Europe > France ;
 - locales : en_US.UTF-8 ;
 - keyboard : selon votre système ;
-- hostname : server-11 ;
+- hostname : server11 ;
 - domainname : example.com ;
 - root password : password ;
 - full name for the new user : student ;

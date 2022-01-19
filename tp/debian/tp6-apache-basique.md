@@ -24,7 +24,7 @@ Comme bon nombre de distributions Linux et BSD, Apache est disponible via des
 paquets binaires pré-compilés pour Debian. Le nom du paquet varie selon les
 distributions, ici il se nomme `apache2`.
 
-Se connecter en ssh sur server-11, puis passer root.
+Se connecter en ssh sur server11, puis passer root.
 Avant l'installaton, regarder quels sont les services réseau en fonctionnement
 : `lsof -n -i`. Seul sshd devrait apparaître. Maintenant, installer Apache :
 `apt -y install apache2`. Relancer la commande d'avant.
@@ -32,14 +32,14 @@ Avant l'installaton, regarder quels sont les services réseau en fonctionnement
 Question : est-ce que l'installation d'Apache a lancé celui-ci ?
 
 Se rendre via le navigateur de l'hôte sur http://192.168.122.11. Il est aussi
-possible, depuis server-11 ou depuis l'hôte, d'utiliser un requêteur HTTP en
+possible, depuis server11 ou depuis l'hôte, d'utiliser un requêteur HTTP en
 ligne de commande comme `curl`. La lecture de la page affichée est recommandée,
 et contient des informations intéressantes pour les prochaines étapes et
 prochains TP.
 
 ## Etape 1 : démarrage, arrêt, et activation au démarrage
 
-Se connecter en ssh sur server-11, puis passer root.
+Se connecter en ssh sur server11, puis passer root.
 Vérifier grâce à l'outil `ps` si Apache est toujours en fonctionnement.
 
 Questions : 
@@ -55,7 +55,7 @@ autres.
 Lancer la commande `apachectl stop`, puis vérifier via `ps` que celui-ci est
 bien arrêté. Lancer ensuite la commande `apachectl start`, et vérifier de la
 même façon qu'Apache fonctionne. Ouvrir un deuxième terminal, se connecter en
-ssh sur server-11, puis passer root. Lancer la commande `top -u www-data`.
+ssh sur server11, puis passer root. Lancer la commande `top -u www-data`.
 Depuis le premier terminal, lancer la commande `apachectl restart`, puis
 regarder les changements au niveau de `top`.
 
@@ -70,7 +70,7 @@ commande `systemctl status apache2` pour voir l'état de lancement d'Apache.
 Question : en utilisant `systemct status apache2`, est-ce qu'Apache est lancé
 au démarrage du système ?
 
-Redémarrer server-11 et s'assurer qu'Apache a bien démarré sans action.
+Redémarrer server11 et s'assurer qu'Apache a bien démarré sans action.
 Utiliser ensuite `systemctl disable apache2` puis redémarrer, s'assurer
 qu'Apache n'est pas lancé. Ré-activer Apache (`systemctl enable apache2`) et le
 démarrer.
@@ -78,7 +78,7 @@ démarrer.
 ## Etape 2 : déposer du contenu
 
 Si ce n'est pas fait, lire la documentation de la page par défaut disponible à
-l'URL http://192.168.122.11. Se connecter en ssh sur server-11, et passer root.
+l'URL http://192.168.122.11. Se connecter en ssh sur server11, et passer root.
 se rendre dans `/var/www/html/`, et y créer un fichier `page2.html`. Insérer du
 texte ou du code HTML dans ce fichier, peu importe tant que c'est visible.
 Visiter l'URL http://192.168.122.11/page2.html et admirer le résultat.

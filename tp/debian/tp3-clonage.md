@@ -6,9 +6,9 @@ Objectif :
 
 ## Etape 0 : clonage de la machine virtuelle
 
-Éteindre la machine virtuelle server-11. Faire un clic droit sur celle-ci dans
+Éteindre la machine virtuelle server11. Faire un clic droit sur celle-ci dans
 le gestionnaire de machine virtuelles puis cliquer sur "Cloner..." Changer le
-nom de la nouvelle machine virtuelle en "server-12".
+nom de la nouvelle machine virtuelle en "server12".
 
 Ouvrir les deux machines virtuelles (sans les démarrer) et vérifier là où elles
 sont identiques et là où elles diffèrent. En particulier, examiner :
@@ -28,8 +28,8 @@ Depuis la machine hôte, lancer (en tant qu'utilisateur) les commandes suivantes
 :
 
 ```
-virsh dumpxml server-11 | tee -a ~/server-11.xml
-virsh dumpxml server-12 | tee -a ~/server-12.xml
+virsh dumpxml server11 | tee -a ~/server11.xml
+virsh dumpxml server12 | tee -a ~/server12.xml
 ```
 
 Cela permet d'exporter les fichiers de définition des machines virtuelles.
@@ -37,14 +37,14 @@ Cela permet d'exporter les fichiers de définition des machines virtuelles.
 Lancer la commande suivante pour comparer les deux machines virtuelles :
 
 ```
-diff --color -bu ~/server-11.xml ~/server-12.xml
+diff --color -bu ~/server11.xml ~/server12.xml
 ```
 
 Question : voyez-vous des différences en plus ?
 
 ## Etape 1 : renommage et reconfiguration IP de la machine virtuelle
 
-Démarrer la machine virtuelle "server-12", et s'y connecter.
+Démarrer la machine virtuelle "server12", et s'y connecter.
 
 Questions :
 
@@ -59,7 +59,7 @@ l'adresse IP.
 En tant que root, lancer la commande suivante :
 
 ```
-grep --color -ir server-11 /etc/*
+grep --color -ir server11 /etc/*
 ```
 
 Relancer la même commande avec l'adresse IP.

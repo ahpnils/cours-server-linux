@@ -27,12 +27,12 @@ Lancer la commande `python3 -m http.server 8080`.
 
 Ensuite, vérifier que le serveur web est bien accessible en essayant d'accéder
 à http://127.0.0.1:8080, puis à http://192.168.122.1:8080. Un fichier nommé
-`server-13.cfg` doit être visible, et téléchargeable.
+`server13.cfg` doit être visible, et téléchargeable.
 
 ## Etape 2 : application du fichier preseed lors de l'installation
 
-Créer une nouvelle machine virtuelle identique à server-11, mais de nom
-server-13 (Adapter le nom du fichier de disque en conséquence). Démarrer
+Créer une nouvelle machine virtuelle identique à server11, mais de nom
+server13 (Adapter le nom du fichier de disque en conséquence). Démarrer
 l'installeur Debian, puis sélectionner "Advanced Options".
 
 ![Impression d'écran des options](pictures/tp4_step0.png)
@@ -47,14 +47,14 @@ formulaire pour entrer l'URL du fichier preseed.
 ![Impression d'écran du formulaire de fichier preseed](pictures/tp4_step3.png)
 
 Attention ! Le clavier est au format US (qwerty). Entrer l'adresse suivante :
-http://192.168.122.1:8080/server-13.cfg puis appuyer sur la touche "Entrée".
+http://192.168.122.1:8080/server13.cfg puis appuyer sur la touche "Entrée".
 L'installation devrait se dérouler sans aucune autre demande de paramètre, et
 la machine virtuelle redémarrera toute seule.
 
 ## Etape 3 : vérifications
 
 Pour les questions suivantes, lire le contenu du fichier preseed et vérifier
-sur la machine virtuelle "server-13" que l'installation concorde.
+sur la machine virtuelle "server13" que l'installation concorde.
 
 Question 1 : quel est le mot de passe root ?
 
@@ -72,13 +72,13 @@ Question 5 : quels sont les paramètres réseau de cette machine virtuelle ?
 
 Eteindre et supprimer les machines virtuelles présentes sur l'hôte.
 Puis, modifier et copier le fichier preseed.cfg pour créer 3 machines
-virtuelles server-11, server-12, et server-13. Ces 3 machines virtuelles
+virtuelles server11, server12, et server13. Ces 3 machines virtuelles
 comporteront les paramètres suivants :
 
-- pour server-11, son IP sera 192.168.122.11 ;
-- pour server-12, son IP sera 192.168.122.12 ;
-- pour server-13, son IP sera 192.168.122.13 ;
-- pour server-12, le paquet "figlet" sera installé.
+- pour server11, son IP sera 192.168.122.11 ;
+- pour server12, son IP sera 192.168.122.12 ;
+- pour server13, son IP sera 192.168.122.13 ;
+- pour server12, le paquet "figlet" sera installé.
 
 Pour vérifier que "figlet" fonctionne, il suffira d'entrer la commande `figlet
 hello`.
