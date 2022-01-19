@@ -1,4 +1,4 @@
-# TP 6 : les virtual hosts dans Apache
+# TP 7 : les virtual hosts dans Apache
 
 Objectifs :
 
