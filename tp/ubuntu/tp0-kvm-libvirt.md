@@ -1,4 +1,4 @@
-# TP 0 : installation de QEM-KVM et de Libvirt, sur un OS Ubuntu
+# TP 0 : installation de QEMU-KVM et de Libvirt, sur un OS Ubuntu
 
 Objectifs :
 
