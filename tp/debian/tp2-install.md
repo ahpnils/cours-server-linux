@@ -5,7 +5,8 @@ Objectifs :
 - installer une machine virtuelle Debian ;
 - gérer les logiciels : installation, suppression, mise à jour, gestion des
   dépôts...
-- reconfigurer le réseau.
+- reconfigurer le réseau ;
+- gérer les utilisateurs et les groupes
 
 ## Etape 0 : création de la machine virtuelle
 
@@ -91,6 +92,8 @@ Le logiciel `apt` permet les actions suivantes :
 - installer les logiciels suivants : tmux, sudo, rsync, git
 - désinstaller le paquet "laptop-detect"
 
+Attention, certaines de ces commandes nécessitent les droits root !
+
 Question : est-ce que des mises à jour de paquets sont disponibles ?
 
 Passons à la gestion des dépôts logiciels. Ceux-ci sont configurés à plusieurs
@@ -155,4 +158,42 @@ Lancer la commande `ifdown <interface>` puis `ifup <interface>` et vérifier que
 les paramètres réseau sont bien appliqués. Vérifier via les commandes `ping -c
 5 192.168.122.1` et `ping -c 5 1.1.1.1` que l'accès au réseau et à Internet
 sont toujours disponibles.
+
+## Etape 4 : gestion des utilisateurs
+
+Un utilisateur a été créé lors de l'installation, mais il est possible de créer
+d'autres utilisateurs une fois le système installé.
+
+Lancer la commande suivante, en tant que root :
+```
+useradd -m -U -g 2001 -u 2001 -s /bin/bash student1
+```
+
+Celle-ci crée un utilisateur, dont les propriétés sont les suivantes :
+
+* son login est `student1` ;
+* son shell (`-s`) est `/bin/bash` ;
+* son UID (`-u`) est `2001` ;
+* son groupe principal est aussi `student1`, et son GID `2001` (`-U`) ;
+* son répertoire "home" est créé (`-m`).
+
+Créer maintenant deux utilisateurs :
+
+* `student2` et `student3` ;
+* leur shell sera `/bin/bash` ;
+* leurs UID sont respectivement `2002` et `2003` ;
+* les GID et groupes principaux seront identiques aux UID et logins ;
+* `student2` fera partie du groupe `staff` (option `-G`) ;
+* `student3` fera partie du groupe `users` ;
+* les répertoires "home" sont créés.
+
+Vérifier que tout est bien créé dans les contenus des fichiers `/etc/passwd` et
+`/etc/group`. Vérifier la présence des répertoires utilisateurs dans `/home`.
+
+Toujours en tant que root, ajouter un mot de passe aux trois comptes créés dans
+cette étape. Par exemple, la commande `passwd student1` permet de modifier le
+mot de passe du compte `student1`. Se déconnecter de la session root et
+vérifier que le mot de passe est bien fonctionnel sur chaque compte.
+
+## Etape 5 : gestion des groupes
 
