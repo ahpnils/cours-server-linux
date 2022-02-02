@@ -8,7 +8,7 @@ Objectifs :
 ## Etape 0 : paramètres réseau
 
 Démarrer la machine virtuelle créée lors du TP 0. Attention, le clavier est
-toujours configuré en QWERTY. Lancer la commande `setup-interface` (spécifique
+toujours configuré en QWERTY. Lancer la commande `setup-interfaces` (spécifique
 à la distribution Alpine Linux), laisser les choix par défaut puis lancer la
 commande `ifup eth0`. Enfin, lancer les commandes `ip addr show` et `ip route
 show`. Noter l'adresse IP allouée à la machine virtuelle, ainsi que celle de la
