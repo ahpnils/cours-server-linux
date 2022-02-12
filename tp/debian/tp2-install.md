@@ -10,7 +10,7 @@ Objectifs :
 
 ## Etape 0 : création de la machine virtuelle
 
-Se rendre sur https://www.debian.org/download/ et télécharger l'image ISO
+Se rendre sur https://www.debian.org/download et télécharger l'image ISO
 d'installation par le réseau (netinstall) pour amd64. Placer le fichier dans
 `~/libvirt/boot/`.
 
