@@ -200,14 +200,17 @@ vérifier que le mot de passe est bien fonctionnel sur chaque compte.
 
 En tant que root, créer un répertoire `/home/groups`. S'assurer que tous les
 utilisateurs du système peuvent entrer dans ce répertoire avec la commande
-`chmod 0755 /home/groups`. Créer ensuite trois fichiers textes :
+`chmod 0755 /home/groups`. Créer ensuite dans ce répertoire trois fichiers 
+textes, et modifier les groupes propriétaires pour obtenir le résultat suivant
+:
 
-- `/home/groups/student1.txt` ;
-- `/home/groups/staff.txt` ;
-- `/home/groups/users.txt`.
+- `/home/groups/student1.txt` ayant comme groupe propriétaire "student1" ;
+- `/home/groups/staff.txt` ayant comme groupe propriétaire "staff" ;
+- `/home/groups/users.txt` ayant comme groupe propriétaire "users".
 
-Modifier les groupes d'appartenance des fichiers grâce à la commande `chgrp` ou
-`chown`. Modifier ensuite les droits des fichiers de façon à ce qu'ils soient
+Pour modifier les groupes propriétaires, utiliser la commande `chgrp` ou `chown`. 
+
+Modifier ensuite les droits des trois fichiers de façon à ce qu'ils soient
 accessibles en lecture et écriture pour le propriétaire et le groupe, mais
 seulement en lecture pour les autres utilisateurs.
 
