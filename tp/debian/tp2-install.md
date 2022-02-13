@@ -166,7 +166,7 @@ d'autres utilisateurs une fois le système installé.
 
 Lancer la commande suivante, en tant que root :
 ```
-useradd -m -U -g 2001 -u 2001 -s /bin/bash student1
+useradd -m -U -u 2001 -s /bin/bash student1
 ```
 
 Celle-ci crée un utilisateur, dont les propriétés sont les suivantes :
