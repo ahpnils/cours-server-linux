@@ -83,7 +83,7 @@ concernant server11 soit comme ceci :
 ```
 Host server11
   Hostname 192.168.122.11
-  User nils
+  User student
 ```
 
 Se connecter en utilisant la commande `ssh server11`.
