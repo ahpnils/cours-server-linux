@@ -158,7 +158,7 @@ Questions :
 - quels sont les droits sur les fichiers de clés ?
 
 Installer la clé sur un des serveurs distants avec la commande suivante :
-`ssh-copy-id ~/.ssh/student_rsa server11`. Suivre les consignes du
+`ssh-copy-id -i ~/.ssh/student_rsa server11`. Suivre les consignes du
 programme. Se connecter à server11 via la commande `ssh -i
 ~/.ssh/student_rsa server11`.
 
