@@ -6,7 +6,7 @@ Objectifs :
 - effectuer une configuration initiale "sécurisée";
 - créer des utilisateurs et recharger les privilèges;
 - créer une base et y insérer des données ;
-- installer une application PHP.
+- paramétrer une connexion distante.
 
 ## Introduction
 
@@ -23,7 +23,7 @@ initiale, lancer la commande `mysql_secure_installation `, puis répondre de la
 façon suivante aux différentes questions posées :
 
 ```
-Switch to unix_socket authentication [Y/n] n
+Switch to unix_socket authentication [Y/n] y
 Change the root password? [Y/n] n
 Remove anonymous users? [Y/n] y
 Disallow root login remotely? [Y/n] y
@@ -109,6 +109,7 @@ utilisateurs et de leur donner des droits précis.
 Créer un utilisateur ayant le même nom que la base de données, mais qui pourra
 se connecter uniquement depuis la machine locale, et qui utilisera le mot de
 passe "password" pour se connecter :
+
 ```
 CREATE USER 'newdb'@'localhost' IDENTIFIED BY 'password';
 ```
@@ -120,7 +121,55 @@ connecté, tenter d'accéder à la base "newdb" avec la commande : `USE newdb;`.
 Question : quel est le résultat de cette dernière commande ? Pourquoi ?
 
 Il faut donc ajouter des privilèges à l'utilisateur. Se déconnecter de la
-session MariaDB, et se reconnecter en tant que root.
+session MariaDB, et se reconnecter en tant que root, puis lancer la commande
+suivante :
 
-## Etape 4 : nettoyage
+```
+FLUSH PRIVILEGES;
+```
 
+Cette commande permet d'appliquer tous les changements apportés aux privilièges
+utilisateurs. Se déconnecter de la session MariaDB, puis tenter de nouveau de
+se connecter en tant qu'utilisateur "newdb".
+
+## Etape 4 : connexion distante
+
+Pour le moment la base de donnée n'est accessible qu'en local. Pour modifier
+cela, il faut agir à deux emplacements :
+
+- le paramétrage réseau de MariaDB ;
+- les privilièges utilisateurs.
+
+Pour le premier emplacement, en tant que root :
+
+- stopper le serveur MariaDB via `systemctl stop mariadb` ;
+- éditer le fichier `/etc/mysql/mariadb.conf.d/50-server.cnf` ;
+- commenter la ligne contenant `bind-address            = 127.0.0.1` ;
+- ajouter en-dessous :
+  ```
+  skip-networking=0
+  skip-bind-address
+  ```
+- sauvegarder le fichier, puis démarrer MariaDB via `systemctl start mariadb`.
+
+Vérifier avec `lsof -i` (toujours en tant que root) que MariaDB écoute bien sur
+toutes les interfaces réseau.
+
+Tenter de se connecter à MariaDB via la commande suivante :
+
+```
+mariadb -h 192.168.122.12 -u newdb -p
+```
+
+Question : quel est le résultat ?
+
+Se reconnecter à MariaDB en tant que root en local, et créer un nouvel
+utilisateur "newdb", comme dans l'étape précédente, mais en remplaçant
+`'localhost'` par `'%'` et en paramétrant le mot de passe à "password2".
+**Ne pas oublier de valider les privilèges**.
+
+Tenter de se connecter de nouveau à MariaDB via la commande qui a échoué plus
+haut.
+
+Question : combien d'utilisateurs "newdb" sont présent ? Quels sont leurs 
+paramètres et leurs privilèges ?
