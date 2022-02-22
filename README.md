@@ -21,9 +21,9 @@ Liste des TP :
   Apache](tp/debian/tp6-apache-basique.md) ;
 * TP 7 : [les virtual hosts dans Apache](tp/debian/tp7-apache-virtual-hosts.md);
 * TP 8 : [découverte de mod_php](tp/debian/tp8-apache-mod_php.md) ;
-* TP 9 : [MariaDB](tp/debian/tp9-mariadb-mysql.md).
-* TP 10 : PHPMyAdmin ou adminer ;
-* TP 11 : Nginx ;
+* TP 9 : [MariaDB](tp/debian/tp9-mariadb-mysql.md) ;
+* TP 10 : [PHPMyAdmin](tp/debian/tp10-phpmyadmin.md) ;
+* TP 11 : [WordPress](tp/debian/tp11-wordpress.md) ;
 * TP 12 : PHP et FPM ;
 * TP 13 : Python et UWSGI ;
 * TP 14 : SSH/SFTP avancé ;
