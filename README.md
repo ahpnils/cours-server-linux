@@ -24,10 +24,11 @@ Liste des TP :
 * TP 9 : [MariaDB](tp/debian/tp9-mariadb-mysql.md) ;
 * TP 10 : [PHPMyAdmin](tp/debian/tp10-phpmyadmin.md) ;
 * TP 11 : [WordPress](tp/debian/tp11-wordpress.md) ;
-* TP 12 : PHP et FPM ;
-* TP 13 : Python et UWSGI ;
-* TP 14 : SSH/SFTP avancé ;
-* TP 15 : Conteneurs et Docker ;
-* TP 16 : HTTPS sur Apache ;
-* TP 17 : HTTPS sur Nginx ;
-* TP 18 : sujets sécurité.
+* TP 12 : [Nginx](tp/debian/tp12-nginx.md) ;
+* TP 13 : PHP et FPM ;
+* TP 14 : Python et UWSGI ;
+* TP 15 : SSH/SFTP avancé ;
+* TP 16 : Conteneurs et Docker ;
+* TP 17 : HTTPS sur Apache ;
+* TP 18 : HTTPS sur Nginx ;
+* TP 19 : sujets sécurité.
