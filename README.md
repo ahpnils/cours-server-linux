@@ -25,7 +25,7 @@ Liste des TP :
 * TP 10 : [PHPMyAdmin](tp/debian/tp10-phpmyadmin.md) ;
 * TP 11 : [WordPress](tp/debian/tp11-wordpress.md) ;
 * TP 12 : [Nginx](tp/debian/tp12-nginx.md) ;
-* TP 13 : PHP et FPM ;
+* TP 13 : [Nginx et PHP-FPM](tp/debian/tp13-nginx-php-fpm.md) ;
 * TP 14 : Python et UWSGI ;
 * TP 15 : SSH/SFTP avancé ;
 * TP 16 : Conteneurs et Docker ;
