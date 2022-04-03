@@ -26,9 +26,10 @@ Liste des TP :
 * TP 11 : [WordPress](tp/debian/tp11-wordpress.md) ;
 * TP 12 : [Nginx](tp/debian/tp12-nginx.md) ;
 * TP 13 : [Nginx et PHP-FPM](tp/debian/tp13-nginx-php-fpm.md) ;
-* TP 14 : Python et UWSGI ;
-* TP 15 : SSH/SFTP avancé ;
-* TP 16 : Conteneurs et Docker ;
-* TP 17 : HTTPS sur Apache ;
-* TP 18 : HTTPS sur Nginx ;
-* TP 19 : sujets sécurité.
+* TP 14 : [Conteneurs et Docker](tp/debian/tp14-docker.md) ;
+* TP 15 : sudo ;
+* TP 16 : Python et UWSGI ;
+* TP 17 : SSH/SFTP avancé ;
+* TP 18 : HTTPS sur Apache ;
+* TP 19 : HTTPS sur Nginx ;
+* TP 20 : sujets sécurité.
