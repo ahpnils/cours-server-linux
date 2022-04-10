@@ -148,3 +148,95 @@ Pour aller plus loin : à partir du Dockerfile fourni, récupérer le contenu [d
 ce dépôt](https://github.com/ahpnils/anotherhomepage.org/tree/main/content) et
 le servir via Docker. En bonus ++, paramétrer Nginx sur server13 en tant que
 reverse-proxy sur http://127.0.0.1:8080.
+
+## Etape 5 : stockage permanent, méthode 1
+
+Jusqu'alors, nos conteneurs sont comme des mouchoirs à usage unique : dès
+qu'ils ont terminé de servir, ils sont détruits. Ceci pose quelques difficultés
+:
+
+- dans le cas d'un service, la mise à jour de sa configuration ;
+- dans le cas du contenu (applicatif par exemple), sa mise à disposition ou sa
+  mise à jour ;
+- dans le cas de traces (fichiers journaux par exemple), leur stockage pérenne
+  et leur conservation.
+
+Nous avons vu grâce à l'étape 4 comment, dans certains de figure, contourner
+certaines difficultés. Il est possible de créer de nouveaux conteneur, avec des
+configurations et des contenus à jour. Mais dans certains cas, un stockage
+permanent est nécessaire.
+
+Docker permet de monter un répertoire existant dans un contenur, en voici un
+exemple. 
+
+Se connecter sur `server13` puis passer root. Créer l'arborescence suivante :
+
+```
+/srv/
+├── docker
+│   └── volume01
+```
+
+Ensuite, créer un fichier texte nommé `hello.txt` dans le répertoire `volume01`
+créé à l'instant, et y ajouter un contenu arbitraire.
+
+Créer ensuite un conteneur montant le répertoire `volume01` dans `/media/` :
+```
+docker run -it -v /srv/docker/volume01:/media debian /bin/bash
+```
+
+Une fois dans le conteneur, vérifier que le fichier `/media/hello.txt` contient
+le contenu attendu. Toujours depuis le conteneur, ajouter un autre contenu
+arbitraire. Quitter le conteneur et vérifier que le contenu a bien été
+actualisé.
+
+En dehors du conteneur, modifier les droits sur le fichier `hello.txt`, et
+modifier aussi son propriétaire. Relancer le conteneur avec la commande
+précédente.
+
+Question : est-ce que les droits et le propriétaire du fichier sont conservés
+dans le conteneur ? Via les noms ou via les UID/GID ?
+
+
+## Etape 6 : stockage permanent, méthode 2
+
+Il existe une deuxième méthode d'utilisation de stockage permanant en utilisant
+la fonctionnalité de volume de Docker. Par défaut, celle-ci ne change pas
+beaucoup de la précédente, mais dispose de nombreuses options comme d'utiliser
+un pilote spécifique, pour, par exemple, limiter la taille du volume. Ce point
+précis ne sera pas abordé dans cette étape et est laissé à la curiosité de la
+personne lisant cette étape.
+
+Toujours sur `server13`, en tant que root, créer un volume pour Docker :
+```
+docker volume create volume02
+```
+
+Ensuite, examiner les informations données par Docker sur le volume :
+```
+docker volume inspect volume02
+```
+
+Question : dans quel emplacement se trouve le volume volume02 ?
+
+Créer un conteneur utilisant ce volume :
+```
+docker run -it -v volume02:/media debian /bin/bash
+```
+
+Ajouter dans `/media/` dans le conteneur un fichier nommé `hello2.txt` au
+contenu arbitraire. Quitter le conteneur et retrouver le fichier sur le
+serveur.
+
+Relancer le conteneur, mais avec la commande ci-dessous, et tenter d'ajouter du
+contenu dans le fichier `hello2.txt` :
+```
+docker run -it -v volume02:/media:ro debian /bin/bash
+```
+
+Laisser ce conteneur en fonctionnement. Depuis un autre terminal sur `server13`,
+lancer un autre conteneur montant `volume02` en écriture. Ajouter du contenu
+dans `hello2.txt` depuis ce conteneur et vérifier que le contenu est bien
+actualisé dans le conteneur "en lecture seule".
+
+Quitter les deux conteneurs.
