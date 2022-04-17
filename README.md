@@ -28,8 +28,8 @@ Liste des TP :
 * TP 13 : [Nginx et PHP-FPM](tp/debian/tp13-nginx-php-fpm.md) ;
 * TP 14 : [Conteneurs et Docker](tp/debian/tp14-docker.md) ;
 * TP 15 : [sudo](tp/debian/tp15-sudo.md) ;
-* TP 16 : Python et UWSGI ;
-* TP 17 : SSH/SFTP avancé ;
-* TP 18 : HTTPS sur Apache ;
-* TP 19 : HTTPS sur Nginx ;
+* TP 16 : [deux usages avancés d'OpenSSH](tp/debian/tp16-ssh_avance.md) ;
+* TP 17 : HTTPS sur Apache ;
+* TP 18 : HTTPS sur Nginx ;
+* TP 19 : Python et UWSGI ;
 * TP 20 : sujets sécurité.
