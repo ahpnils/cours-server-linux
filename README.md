@@ -27,7 +27,7 @@ Liste des TP :
 * TP 12 : [Nginx](tp/debian/tp12-nginx.md) ;
 * TP 13 : [Nginx et PHP-FPM](tp/debian/tp13-nginx-php-fpm.md) ;
 * TP 14 : [Conteneurs et Docker](tp/debian/tp14-docker.md) ;
-* TP 15 : sudo ;
+* TP 15 : [sudo](tp/debian/tp15-sudo.md) ;
 * TP 16 : Python et UWSGI ;
 * TP 17 : SSH/SFTP avancé ;
 * TP 18 : HTTPS sur Apache ;
