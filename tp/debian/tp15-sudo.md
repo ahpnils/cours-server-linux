@@ -119,7 +119,7 @@ sudo -u student1 whoami
 En tant que root, ajouter la configuration suivante à sudo :
 ```
 Cmnd_Alias WHO = /usr/bin/whoami
-student ALL=(student) NOPASSWD:WHO
+student ALL=(student1) NOPASSWD:WHO
 ```
 
 Relancer la commande sudo précédente et analyser la différence.
