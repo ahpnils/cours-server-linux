@@ -15,7 +15,7 @@ Bien souvent, en environnement de test, générer un certificat peut s'avérer
 fastidieux. C'est pourquoi il existe un paquet Debian nommé `ssl-cert` qui
 comporte, entre autres un certificat auto-signé.
 
-Installer, si ce n'est pas déjà la cas, le paquet `ssl-certs` sur `server13`
+Installer, si ce n'est pas déjà la cas, le paquet `ssl-cert` sur `server13`
 
 ## Etape 1 : configuration virtual host HTTPS
 
