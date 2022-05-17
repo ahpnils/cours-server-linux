@@ -1,3 +1,5 @@
+[Retour au sommaire](../../README.md)
+
 # TP 10 : PHPMyAdmin
 
 Objectifs :
