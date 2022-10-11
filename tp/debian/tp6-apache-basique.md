@@ -20,7 +20,7 @@ développement de ce serveur web mais aussi, entre autres, d'Open Office (suite
 bureautique), Tomcat (serveur d'applications) et de nombreux logiciels utilisés
 en environnement Java (comme log4j).
 
-## Etape 0 : installation
+## Étape 0 : installation
 
 Comme bon nombre de distributions Linux et BSD, Apache est disponible via des
 paquets binaires pré-compilés pour Debian. Le nom du paquet varie selon les
@@ -39,14 +39,14 @@ ligne de commande comme `curl`. La lecture de la page affichée est recommandée
 et contient des informations intéressantes pour les prochaines étapes et
 prochains TP.
 
-## Etape 1 : démarrage, arrêt, et activation au démarrage
+## Étape 1 : démarrage, arrêt, et activation au démarrage
 
 Se connecter en ssh sur server11, puis passer root.
 Vérifier grâce à l'outil `ps` si Apache est toujours en fonctionnement.
 
 Questions : 
 - comment s'appelle le programme ?
-- combien de processus correspondant sont en fonctionnement ?
+- combien de processus correspondants sont en fonctionnement ?
 - à quels utilisateurs appartiennent ces processus ?
 
 Apache dispose d'un petit programme permettant de le contrôler. Sous Debian, il
@@ -77,7 +77,7 @@ Utiliser ensuite `systemctl disable apache2` puis redémarrer, s'assurer
 qu'Apache n'est pas lancé. Ré-activer Apache (`systemctl enable apache2`) et le
 démarrer.
 
-## Etape 2 : déposer du contenu
+## Étape 2 : déposer du contenu
 
 Si ce n'est pas fait, lire la documentation de la page par défaut disponible à
 l'URL http://192.168.122.11. Se connecter en ssh sur server11, et passer root.
@@ -95,7 +95,7 @@ droits minimum pour que la page soit de nouveau accessible.
 Question : quels sont les droits minimum pour accéder à `page2.html` depuis le
 serveur web ? En owner root ainsi qu'en owner www-data.
 
-## Etape 3 : personnaliser l'emplacement du contenu
+## Étape 3 : personnaliser l'emplacement du contenu
 
 Par défaut, le contenu se trouve donc dans `/var/www/html`. Mais il est
 possible de modifier cet emplacement. Se rendre dans
@@ -124,11 +124,11 @@ navigateur.
 
 Question : quel est le résultat ?
 
-Editer le fichier de configuration `/etc/apache2/apache2.conf` et retrouver la
-directive ouvrante `<Directory /var/www>`. En-dessous, se trouve une directive
-similaire pour `/srv/`. Décomenter les directives et relancer Apache.
+Éditer le fichier de configuration `/etc/apache2/apache2.conf` et retrouver la
+directive ouvrante `<Directory /var/www>`. En dessous se trouve une directive
+similaire pour `/srv/`. Décommenter les directives et relancer Apache.
 
-## Etape 4 : les fichiers de logs (journaux)
+## Étape 4 : les fichiers de logs (journaux)
 
 De nombreuses requêtes HTTP ont été réalisées dans les étapes précédentes,
 certaines avec succès, d'autres générant une erreur. Il peut être utile de voir
@@ -141,21 +141,21 @@ dans le répertoire `/var/log`, et sous Debian, Apache stocke ses logs dans
 Repérer dans `/etc/apache2/apache2.conf` la directive `ErrorLog`. Retrouver le
 fichier correspondant dans `/var/log/apache2`.
 
-Repérer dans `/etc/apache2/sites-enable/000-default.conf` les directives
-`ErrorLog` et `AccessLog`, et retrouver les fichiers correspondant dans
+Repérer dans `/etc/apache2/sites-enabled/000-default.conf` les directives
+`ErrorLog` et `CustomLog`, et retrouver les fichiers correspondants dans
 `/var/log/apache2`. 
 
 Questions :
-- quelles informations trouve-t'on dans `/var/log/access.log` ?
-- quelles informations trouve-t'on dans `/var/log/error.log` ?
+- quelles informations trouve-t-on dans `/var/log/apache2/access.log` ?
+- quelles informations trouve-t-on dans `/var/log/apache2/error.log` ?
 
-Depuis un terminal, lancer la commande `tail -f /var/log/error.log` puis dans
+Depuis un terminal, lancer la commande `tail -f /var/log/apache2/error.log` puis dans
 un autre terminal, en tant que root, lancer la commande `apachectl restart`.
 
-Question : qu'observe-t'on ? 
+Question : qu'observe-t-on ? 
 
-Couper `tail`, puis lancer la commande `tail -f /var/log/access.log` puis
+Couper `tail`, puis lancer la commande `tail -f /var/log/apache2/access.log` puis
 utiliser son navigateur pour visiter le site web, et tenter d'accéder à des
 pages inexistantes.
 
-Question : qu'observe-t'on ?
+Question : qu'observe-t-on ?
