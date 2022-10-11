@@ -141,20 +141,20 @@ dans le répertoire `/var/log`, et sous Debian, Apache stocke ses logs dans
 Repérer dans `/etc/apache2/apache2.conf` la directive `ErrorLog`. Retrouver le
 fichier correspondant dans `/var/log/apache2`.
 
-Repérer dans `/etc/apache2/sites-enable/000-default.conf` les directives
-`ErrorLog` et `AccessLog`, et retrouver les fichiers correspondants dans
+Repérer dans `/etc/apache2/sites-enabled/000-default.conf` les directives
+`ErrorLog` et `CustomLog`, et retrouver les fichiers correspondants dans
 `/var/log/apache2`. 
 
 Questions :
-- quelles informations trouve-t-on dans `/var/log/access.log` ?
-- quelles informations trouve-t-on dans `/var/log/error.log` ?
+- quelles informations trouve-t-on dans `/var/log/apache2/access.log` ?
+- quelles informations trouve-t-on dans `/var/log/apache2/error.log` ?
 
-Depuis un terminal, lancer la commande `tail -f /var/log/error.log` puis dans
+Depuis un terminal, lancer la commande `tail -f /var/log/apache2/error.log` puis dans
 un autre terminal, en tant que root, lancer la commande `apachectl restart`.
 
 Question : qu'observe-t-on ? 
 
-Couper `tail`, puis lancer la commande `tail -f /var/log/access.log` puis
+Couper `tail`, puis lancer la commande `tail -f /var/log/apache2/access.log` puis
 utiliser son navigateur pour visiter le site web, et tenter d'accéder à des
 pages inexistantes.
 
