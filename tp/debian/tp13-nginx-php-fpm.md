@@ -62,7 +62,7 @@ caractéristiques sont les suivantes :
 - son shell est `/sbin/nologin`.
 
 Ensuite, transférer le fichier `fpm/server13.conf` dans le répertoire
-`/etc/php/7.4/fpm/pool.d`. Relancer le service `php7.4-fpm`, puis vérifier que
+`/etc/php/7.4/fpm/pool.d`. Avec la commande `usermod`, ajouter l'utilisateur `www-data` (utilisé par nginx) au groupe `server13` afin d'autoriser l'accès en lecture et écriture au fichier `server13.sock`. Relancer le service `php7.4-fpm`, puis vérifier que
 celui-ci est bien relancé, via systemd.
 
 Questions :
