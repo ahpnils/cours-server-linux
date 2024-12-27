@@ -48,4 +48,3 @@ return 301 https://$host$request_uri;
 
 Redémarrer Nginx, et se rendre sur http://server13.example.com. La
 redirection devrait fonctionner.
-

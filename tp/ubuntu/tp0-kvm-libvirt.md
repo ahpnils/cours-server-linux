@@ -2,10 +2,10 @@
 
 Objectifs :
 
-- savoir si un ordinateur peut exécuter des machines virtuelles
-- installer QEMU-KVM, Libvirt, ainsi que virt-manager
-- installer une première machine virtuelle en mode graphique
-- modifier quelques paramètres de la machine virtuelle en mode graphique
+- savoir si un ordinateur peut exécuter des machines virtuelles ;
+- installer QEMU-KVM, Libvirt, ainsi que virt-manager ;
+- installer une première machine virtuelle en mode graphique ;
+- modifier quelques paramètres de la machine virtuelle en mode graphique.
 
 ## Etape 0 : vérification du matériel
 
@@ -15,8 +15,9 @@ d'instruction en particulier. Pour les processeurs Intel, il s'agit du drapeau
 "vmx", et pour les processeurs AMD, il s'agit du drapeau "svm". On peut
 vérifier la présence de ces drapeaux dans `/proc/cpuinfo`.
 
-Question : est-ce que le processeur de la machine dispose du jeu d'instructions
-de virtualisation ?
+Questions : est-ce que le processeur de la machine dispose du jeu d'instructions
+de virtualisation ? Quelle commande permet de filtrer l'affichage de
+`/proc/cpuinfo` pour n'afficher que le drapeau de virtualisation ?
 
 ## Etape 1 : installation des logiciels
 
@@ -27,16 +28,23 @@ sudo apt update && sudo apt -y upgrade
 
 Ensuite, installation des paquets logiciels :
 ```
-sudo apt -y install qemu-kvm libvirt-daemon-system libvirt-daemon virtinst libosinfo-bin virt-manager qemu-system-x86
+sudo apt -y install qemu-kvm libvirt-daemon-system libvirt-daemon virtinst bridge-utils libosinfo-bin virt-manager qemu-system 
+sudo apt -y install virtiofsd # À partir d'Ubuntu 24.04 inclus
+sudo apt -y install qemu-system-common # Jusqu'à Ubuntu 22.04 inclus
 ```
 
-Libvirt crée son propre groupe, vérifions que notre utilisateur est bien ajouté
-au groupe "libvirt" :
+Libvirt crée son propre groupe, nommé "libvirt", mais parfois certaines
+opérations se feront via le groupe "kvm". Ajoutons donc l'utilisateur courant à
+ces groupes :
 ```
-grep libvirt /etc/group
+sudo usermod -a -G kvm $(whoami)
+sudo usermod -a -G libvirt $(whoami)
 ```
 
-Question : est-ce que notre utilisateur fait bien partie du groupe "libvirt" ?
+Attention : pour que l'ajout du groupe soit pris en compte, il faut fermer sa
+session puis en ouvrir une nouvelle.
+
+Questions : comment vérifier que l'utilisateur courant est membre des groupes "libvirt" et "kvm" ?
 
 Bien que les logiciels ait été installés, des modules ou des services ne sont
 pas correctement démarrés. Le plus simple est de redémarrer l'ordinateur :
@@ -109,7 +117,10 @@ changement de nom, le nom du fichier de stockage change.
 Cliquer sur Terminer. Le démarrage de la machine virtuelle commence.
 
 Pour se connecter sur l'OS invité, l'utilisateur est `root`, et il n'y a pas de
-mot de passe. Attention, le clavier est configuré en QWERTY.
+mot de passe. Attention, le clavier est configuré en QWERTY (il est possible
+d'utiliser la commande `setup-keyboard` pour y remédier), et lors du premier
+clic dans l'écran de la machine virtuelle, un message à propos de la capture de
+la souris et du clavier sera affiché (on peut autoriser / allow sans risque).
 
 ## Etape 3 : modification des paramètres principaux de la machine virtuelle
 

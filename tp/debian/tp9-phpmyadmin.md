@@ -1,6 +1,6 @@
 [Retour au sommaire](../../README.md)
 
-# TP 10 : PHPMyAdmin
+# TP 9 : PHPMyAdmin
 
 Objectifs :
 
@@ -34,9 +34,8 @@ Se connecter sur server12 en tant que root, puis lancer un shell MariaDB.
 Lancer les commandes suivantes :
 
 ```
-CREATE USER 'root'@'192.168.122.11' IDENTIFIED BY 'remotepass';
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.122.11' IDENTIFIED BY 'remotepass' WITH GRANT OPTION;
-FLUSH PRIVILEGES;
+CREATE USER 'root'@'10.13.37.11' IDENTIFIED BY 'remotepass';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'10.13.37.11' IDENTIFIED BY 'remotepass' WITH GRANT OPTION;
 ```
 
 ## Etape 1 : installation
@@ -49,7 +48,7 @@ recharger Apache via `systemctl reload apache2`.
 Accéder depuis la machine hôte aux URLs suivantes :
 - http://server11.example.com/phpmyadmin/ ;
 - http://www11.example.com/phpmyadmin/ ;
-- http://192.168.122.11/phpmyadmin/.
+- http://10.13.37.11/phpmyadmin/.
 
 Consulter le fichier `/etc/apache2/conf-enabled/phpmyadmin.conf`.
 
@@ -72,15 +71,14 @@ mot de passe `remotepass`.
 
 Question : est-ce que root a accès à plus de choses ? Quoi ?
 
-Se rendre dans l'onglet "User accounts", retrouver l'utilisateur `newdb`
-utilisé plus haut, éditer ses privilèges pour la base `newdb` et lui attribuer
-tous les privilèges "Data" et "Structure". Se déconnecter de la session root et
+Se rendre dans l'onglet "User accounts", retrouver l'utilisateur `newdb@%`
+utilisé plus haut, éditer ses privilèges pour la base `newdb` et ne lui attribuer
+que les privilèges "Data" et "Structure". Se déconnecter de la session root et
 ouvrir une nouvelle session en tant qu'utilisateur `newdb`.
 
-Questions :
+Question :
 
-- est-ce que `newdb` peut accéder à la base éponyme ?
-- est-ce qu'un rechargement des privilèges a été nécessaire ?
+- est-ce que `newdb@%` peut accéder à la base éponyme ?
 
 ## Etape 3 : export de base de données
 

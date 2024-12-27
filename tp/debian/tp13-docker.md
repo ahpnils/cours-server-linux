@@ -1,6 +1,6 @@
 [Retour au sommaire](../../README.md)
 
-# TP 14 : les conteneurs et Docker
+# TP 13 : les conteneurs et Docker
 
 Objectifs :
 
@@ -31,6 +31,10 @@ Vérifier que l'installation s'est bien déroulée en utilisant la commande
 
 Docker fonctionne à l'aide d'un service. Grâce à `systemctl`, vérifier que le
 service `docker` est bien lancé et activé par défaut.
+
+Ajouter l'utilisateur `vagrant` au groupe `docker`, puis se déconnecter et se
+reconnecter. Il est maintenant possible d'utiliser docker sans avoir à passer
+root ou utiliser sudo.
 
 ## Etape 1 : un premier conteneur, et contrôles
 
@@ -63,9 +67,8 @@ Questions :
 - quelle place reste-t'il sur le disque dur ?
 
 Vérifier aussi la version du noyau ainsi que l'espace disque de server13, en
-lançant un autre terminal et en effectuant une deuxième connexion ssh.
-Vérifier aussi que le conteneur est toujours en exécution via `docker ps` (en 
-tant que root).
+lançant un autre terminal et en effectuant une deuxième connexion.
+Vérifier aussi que le conteneur est toujours en exécution via `docker ps`.
 
 Quitter le conteneur via la commande `exit`.
 
@@ -91,7 +94,7 @@ commande `docker pull nginx` (en tant que root). On peut vérifier la listes des
 images installées sur notre système via la commande `docker image ls`.
 
 Exécuter ensuite le conteneur via la commande `docker run -it -p 8080:80
-nginx`. Depuis l'hôte, accéder à l'URL http://192.168.122.13:8080/ . Quitter le
+nginx`. Depuis l'hôte, accéder à l'URL http://10.13.37.13:8080/ . Quitter le
 conteneur via `Ctrl-C`, puis le relancer via `docker run -d -p 8080:80 nginx`.
 Pour accéder au contenu du conteneur alors qu'il est en exécution détachée,
 utiliser la commande `docker exec -it <id> /bin/bash`.
@@ -128,13 +131,12 @@ Puis, lancer Nginx manuellement, depuis le conteneur :
 /usr/sbin/nginx
 ```
 
-Vérifier que http://192.168.122.13:8080/ répond bien. Eteindre le conteneur.
+Vérifier que http://10.13.37.13:8080/ répond bien. Eteindre le conteneur.
 
 ## Etape 4 : conteneur personnalisé avec un Dockerfile
 
 Transférer sur server13 le fichier `docker/Dockerfile` de ce dépôt. Depuis le
-répertoire où se trouve le fichier `Dockerfile`, lancer la commande suivante
-(en tant que root):
+répertoire où se trouve le fichier `Dockerfile`, lancer la commande suivante :
 ```
 docker build -t cours-linux/debian-apache2:latest ./
 ```
@@ -144,7 +146,7 @@ Ensuite, lancer un conteneur utilisant l'image personnalisée ainsi crée :
 docker run -d -p 8080:80 cours-linux/debian-apache2
 ```
 
-Depuis l'hôte, se rendre sur http://192.168.122.13:8080/
+Depuis l'hôte, se rendre sur http://10.13.37.13:8080/
 
 Pour aller plus loin : à partir du Dockerfile fourni, récupérer le contenu [de
 ce dépôt](https://github.com/ahpnils/anotherhomepage.org/tree/main/content) et
@@ -198,7 +200,6 @@ précédente.
 
 Question : est-ce que les droits et le propriétaire du fichier sont conservés
 dans le conteneur ? Via les noms ou via les UID/GID ?
-
 
 ## Etape 6 : stockage permanent, méthode 2
 

@@ -2,8 +2,8 @@
 
 Objectifs :
 
-- découvrir les paramètres réseau de la machine virtuelle
-- configurer le stockage des machines virtuelles en mode graphique
+- découvrir les paramètres réseau de la machine virtuelle ;
+- configurer le stockage des machines virtuelles en mode graphique.
 
 ## Etape 0 : paramètres réseau
 
@@ -32,9 +32,13 @@ sur "Détails de la connexion" puis dans l'onglet "stockage".
 
 Question : quels sont les pools de stockage disponibles ?
 
-Dans ce même menu, créer deux pools de stockage :
-- un premier nommé `student_images` dont l'emplacement est `~/libvirt/images` ;
-- un deuxième nommé `student_boot` dont l'emplacement est `~/libvirt/boot`.
+Créer les répertoires `~/libvirt/images` et `~/libvirt/boot`, et à partir du
+menu de stockage dans le gestionnaire de machines virtuelle, créer deux pools
+de stockage :
+- un premier nommé `student_images` dont l'emplacement est le répertoire
+  `libvirt/images` créé dans son répertoire personnel ;
+- un deuxième nommé `student_boot` dont l'emplacement est le répertoire
+  `libvirt/boot` créé dans son répertoire personnel.
 
 Les deux pools de stockage doivent doivent être démarrés au démarrage de
 l'ordinateur.

@@ -1,21 +1,18 @@
 [Retour au sommaire](../../README.md)
 
-# TP 15 : sudo
+# TP 14 : sudo
 
 Objectifs :
 
-- configurer sudo
-- lancer un premier conteneur, et contrôler son exécution ;
-- lancer un conteneur disposant d'un programme installé ;
-- créer son conteneur via un Dockerfile.
+- configurer sudo finement
 
 ## Introduction
 
-L'utilitaire `su` est beaucoup plus puissant qu'on peut penser de prime abord,
-mais celui-ci a quelques limitations, comme l'obligation d'être root pour ne
-pas effectuer certaines opérations sans mot de passe, ainsi que l'absence de
-filtrage sur des utilisateurs, groupes, commandes, voire même groupes de
-commandes. L'utilitaire `sudo` vient combler ce vide.
+L'utilitaire sudo a déjà été abordé dans [le chapitre
+16](https://github.com/ahpnils/cours-linux-shell/blob/main/ch/ch16_root_sudo.md)
+du [cours Linux
+Shell](https://github.com/ahpnils/cours-linux-shell/), mais de façon assez
+brève. Voyons ici quelques configurations plus fines.
 
 Attention : une mauvaise configuration peut donner trop de droits à un ou
 plusieurs utilisateurs. Cela peut faciliter la compromission d'un serveur. Pour
@@ -27,8 +24,7 @@ de l'ANSSI est fortement encouragé, et contient quelques paragraphes sur sudo.
 ## Etape 0 : installation de sudo
 
 Comme beaucoup de logiciels, le paquet à installer correspond au nom de
-celui-ci. Le paquet "sudo" est normalement installé si les machines sont
-configurés grâce au fichier preseed fourni dans les premiers TP.
+celui-ci. Le paquet "sudo" est normalement déjà installé.
 
 En tant que root, sur `server11`, vérifier que le paquet "sudo" est installé,
 et que les fichiers suivants sont présents :
@@ -50,7 +46,7 @@ Defaults    timestamp_timeout=0
 ```
 Sauver le fichier, et quitter l'éditeur.
 
-Se connecter sur `server11` en tant qu'utilisateur student et lancer la
+Se connecter sur `server11` en tant qu'utilisateur student (créé au TP4) et lancer la
 commande `sudo -l`. Celle-ci permet de lister les droits sudo disponibles à
 l'utilisateur l'appelant. Elle devrait demander un mot de passe.
 
@@ -110,8 +106,7 @@ Questions :
 
 ## Etape 4 : là où on va il n'y a pas besoin de root
 
-En tant que root, sur server11, comme présenté au TP 2 étape 4, créer un
-utilisateur nommé student1.
+En tant que root, sur server11, créer un utilisateur nommé student1.
 
 Depuis la session de l'utilisateur student, lancer la commande suivante :
 ```
