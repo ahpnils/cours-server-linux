@@ -1,6 +1,6 @@
 [Retour au sommaire](../../README.md)
 
-# TP 7 : les virtual hosts dans Apache
+# TP 6 : les virtual hosts dans Apache
 
 Objectifs :
 
@@ -21,7 +21,7 @@ Sur sa machine locale, ouvrir un terminal, et passer root. Editer le fichier de
 configuration `/etc/hosts` et ajouter la ligne suivante :
 
 ```
-192.168.122.11 server11 server11.example.com www11.example.com
+10.13.37.11 server11.example.com server11 www11.example.com
 ```
 
 Une fois le fichier sauvé, s'assurer que la machine server11 est bien
