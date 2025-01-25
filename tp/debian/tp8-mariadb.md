@@ -1,6 +1,6 @@
 [Retour au sommaire](../../README.md)
 
-# TP 9 : MariaDB
+# TP 8 : MariaDB
 
 Objectifs :
 
@@ -21,7 +21,7 @@ Du fait de son origine, de nombreuses commandes dans MariaDB portent le nom
 ## Etape 0 : installation
 
 Sur server12, installer le paquet `mariadb-server`. Pour la configuration
-initiale, lancer la commande `mysql_secure_installation `, puis répondre de la
+initiale, lancer la commande `mariadb-secure-installation `, puis répondre de la
 façon suivante aux différentes questions posées :
 
 ```
@@ -160,7 +160,7 @@ toutes les interfaces réseau.
 Tenter de se connecter à MariaDB via la commande suivante :
 
 ```
-mariadb -h 192.168.122.12 -u newdb -p
+mariadb -h 10.13.37.12 -u newdb -p
 ```
 
 Question : quel est le résultat ?

@@ -1,6 +1,6 @@
 [Retour au sommaire](../../README.md)
 
-# TP 11 : WordPress
+# TP 10 : WordPress
 
 Objectifs :
 

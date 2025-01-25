@@ -1,6 +1,6 @@
 [Retour au sommaire](../../README.md)
 
-# TP 17 : HTTPS avec Apache
+# TP 16 : HTTPS avec Apache
 
 Objectifs :
 

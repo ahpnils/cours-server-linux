@@ -2,8 +2,8 @@
 
 Objectifs :
 
-- découvrir les paramètres réseau de la machine virtuelle
-- configurer le stockage des machines virtuelles en mode graphique
+- découvrir les paramètres réseau de la machine virtuelle ;
+- configurer le stockage des machines virtuelles en mode graphique.
 
 ## Etape 0 : paramètres réseau
 

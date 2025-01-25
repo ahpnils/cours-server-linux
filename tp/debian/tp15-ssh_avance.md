@@ -1,6 +1,6 @@
 [Retour au sommaire](../../README.md)
 
-# TP 16 : ssh avancé
+# TP 15 : ssh avancé
 
 Objectifs :
 
@@ -14,21 +14,20 @@ canal sécurisé. Ce TP montre deux usages pratiques.
 
 ## Etape 0 : préparatifs
 
-Pour plus de praticité, vérifier que la connexion vers les machines `server11`,
-`server12` et `server13` s'effectue avec une authentification par clé. Si
-besoin, se référer au TP 5, étape 4.
+Créer un utilisateur student sur les machines server12 et server13, et
+configurer une authentification ssh par clé. Si besoin, se référer au TP 4.
 
 S'assurer aussi que la configuration suivante est présente dans `~/.ssh/config`
 sur le poste local : 
 ```
 Host server11
-  Hostname 192.168.122.11
+  Hostname 10.13.37.11
   User student
 Host server12
-  Hostname 192.168.122.12
+  Hostname 10.13.37.12
   User student
 Host server13
-  Hostname 192.168.122.13
+  Hostname 10.13.37.13
   User student
 ```
 
@@ -58,7 +57,8 @@ Se connecter ensuite sur `server12` depuis le poste local de façon classique
 `ssh server12` et vérifier avec la commande `who` d'où vient la connexion sur
 `server12`.
 
-Remplacer la ligne "ProxyJump" par la ligne suivante :
+Créer un utilisateur student1 sur `server13`, puis remplacer la ligne "ProxyJump"
+par la ligne suivante :
 ```
 ProxyJump student1@server13
 ```
@@ -85,7 +85,7 @@ Dans un autre terminal, toujours sur le poste local, vérifier que le port 8080
 est bien en écoute sur la machine, via la commande `sudo lsof -i -n | grep
 ssh`.
 
-Se connecter ensuite depuis le poste local sur http://192.168.122.11/server-status, puis se connecter sur http://127.0.0.1:8080/server-status .
+Se connecter ensuite depuis le poste local sur http://10.13.37.11/server-status, puis se connecter sur http://127.0.0.1:8080/server-status .
 
 Cette connexion peut aussi se faire au niveau du fichier de configuration. Se
 déconnecter de la session ssh vers `server11`, et ajouter dans le bloc de

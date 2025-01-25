@@ -1,6 +1,6 @@
 [Retour au sommaire](../../README.md)
 
-# TP 8 : découverte de mod_php
+# TP 7 : découverte de mod_php
 
 Objectifs :
 
@@ -121,7 +121,7 @@ Nous allons installer l'extension
 traitement d'images. Nous ne l'utiliserons pas, il s'agit d'un prérequis à
 l'étape suivante.
 
-Installer le paquet `php7.4-gd` puis rafraîchir la page "PHPinfo". Vérifier si
+Installer le paquet `php8.2-gd` puis rafraîchir la page "PHPinfo". Vérifier si
 GD est activé. Relancer Apache puis rafraîchir la page "PHPinfo". Vérifier de
 nouveau si GD est activé.
 

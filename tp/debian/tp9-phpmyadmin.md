@@ -1,6 +1,6 @@
 [Retour au sommaire](../../README.md)
 
-# TP 10 : PHPMyAdmin
+# TP 9 : PHPMyAdmin
 
 Objectifs :
 
@@ -34,8 +34,8 @@ Se connecter sur server12 en tant que root, puis lancer un shell MariaDB.
 Lancer les commandes suivantes :
 
 ```
-CREATE USER 'root'@'192.168.122.11' IDENTIFIED BY 'remotepass';
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.122.11' IDENTIFIED BY 'remotepass' WITH GRANT OPTION;
+CREATE USER 'root'@'10.13.37.11' IDENTIFIED BY 'remotepass';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'10.13.37.11' IDENTIFIED BY 'remotepass' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 ```
 
@@ -49,7 +49,7 @@ recharger Apache via `systemctl reload apache2`.
 Accéder depuis la machine hôte aux URLs suivantes :
 - http://server11.example.com/phpmyadmin/ ;
 - http://www11.example.com/phpmyadmin/ ;
-- http://192.168.122.11/phpmyadmin/.
+- http://10.13.37.11/phpmyadmin/.
 
 Consulter le fichier `/etc/apache2/conf-enabled/phpmyadmin.conf`.
 

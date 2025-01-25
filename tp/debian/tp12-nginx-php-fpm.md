@@ -1,6 +1,6 @@
 [Retour au sommaire](../../README.md)
 
-# TP 13 : Nginx, et PHP-FPM
+# TP 12 : Nginx, et PHP-FPM
 
 Objectif :
 
