@@ -1,6 +1,6 @@
 [Retour au sommaire](../../README.md)
 
-# TP 8 : découverte de mod_php
+# TP 7 : découverte de mod_php
 
 Objectifs :
 
@@ -118,10 +118,10 @@ s'en trouve facilitée.
 
 Nous allons installer l'extension
 [GD](https://www.php.net/manual/fr/book.image.php), qui permet de faire du
-traitement d'images. Nous ne l'utiliserons pas, il s'agit d'un prérequis à
-l'étape suivante.
+traitement d'images. Nous ne l'utiliserons pas tout de suite,
+il s'agit d'un prérequis à l'étape suivante.
 
-Installer le paquet `php7.4-gd` puis rafraîchir la page "PHPinfo". Vérifier si
+Installer le paquet `php8.2-gd` puis rafraîchir la page "PHPinfo". Vérifier si
 GD est activé. Relancer Apache puis rafraîchir la page "PHPinfo". Vérifier de
 nouveau si GD est activé.
 
@@ -134,3 +134,11 @@ Supprimer les fichiers `index.html` et `index.php`.
 
 Installer PluXml dans le virtual host `server11.example.com` et écrire une page
 personnalisée.
+
+Quelques points d'assistance :
+- PluXml est distribué sous forme d'archive zip, il faudra donc installer le
+  paquet unzip sur server11 ;
+- il est possible de télécharger directement l'archive de PluXml depuis
+  server11 grâce au logiciel wget ;
+- PluXml a besoin des extensions PHP XML et GD ;
+- PluXml a besoin du module Apache "rewrite".

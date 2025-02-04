@@ -1,6 +1,6 @@
 [Retour au sommaire](../../README.md)
 
-# TP 7 : les virtual hosts dans Apache
+# TP 6 : les virtual hosts dans Apache
 
 Objectifs :
 
@@ -21,7 +21,7 @@ Sur sa machine locale, ouvrir un terminal, et passer root. Editer le fichier de
 configuration `/etc/hosts` et ajouter la ligne suivante :
 
 ```
-192.168.122.11 server11 server11.example.com www11.example.com
+10.13.37.11 server11.example.com server11 www11.example.com
 ```
 
 Une fois le fichier sauvé, s'assurer que la machine server11 est bien
@@ -58,7 +58,10 @@ configuration vient-il ?
 Prendre note du contenu de `/etc/apache2/sites-enabled` et
 `/etc/apache2/sites-available`.
 Conformément à la documentation du fichier par défaut, utiliser la commande
-`a2ensite server11.example.com` pour activer le fichier de virtual host ajouté.
+`a2ensite server11.example.com` pour activer le fichier de virtual host ajouté,
+et utiliser la commande `a2dissite 000-default` pour retirer le fichier de
+virtual host par défaut.
+
 Visiter de nouveau les URL sus-mentionnées. Consulter le fichier activé et lire
 le contenu des fichiers de log paramétrés.
 
@@ -67,7 +70,9 @@ configuration vient-il ?
 
 En utilisant le fichier de virtual host fourni comme modèle, créer un fichier
 `www11.example.com.conf` ainsi qu'une arborescence et une page HTML répondant
-au site *www11.example.com*.
+au site *www11.example.com*, puis vérifier que des requêtes sur
+server11.example.com et sur www11.example.com vont bien sur les sites
+respectifs, et dans les logs respectifs.
 
 ## Etape 2 : le format des logs
 
@@ -75,8 +80,8 @@ L'oeil averti aura remarqué que les contenus de `/var/log/apache2/access.log`
 et `/srv/www/server11.example.com/log/access.log` n'ont pas tout à fait le même
 format.
 
-Rechercher dans les fichiers `/etc/apache2/apache2.conf` et
-`/etc/apache2/sites-available/server11.example.com.conf` les lignes commençant
+Rechercher dans les fichiers `/etc/apache2/conf-enabled/other-vhosts-access-log.conf` et
+`/etc/apache2/sites-enabled/server11.example.com.conf` les lignes commençant
 par *CustomLog* et remarquer que le format défini est différent. Retrouver les
 deux définitions de format dans `/etc/apache2/apache2.conf`.
 

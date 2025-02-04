@@ -1,6 +1,6 @@
 [Retour au sommaire](../../README.md)
 
-# TP 9 : MariaDB
+# TP 8 : MariaDB
 
 Objectifs :
 
@@ -15,13 +15,15 @@ Objectifs :
 MariaDB est un système de gestion de base de données édité sous licence GPL.
 Il s'agit d'un fork de MySQL, ce dernier appartenant à la société Oracle.
 
-Du fait de son origine, de nombreuses commandes dans MariaDB portent le nom
-`mysql`.
+Du fait de son origine, de nombreuses commandes dans MariaDB avaient le même
+nom que leur équivalent dans MySQL. Cependant, ce TP choisit volontairement
+d'utiliser les noms MariaDB car dans les dernières versions comportent un
+avertissement sur le retrait des liens de compatibilité MySQL <-> MariaDB.
 
 ## Etape 0 : installation
 
 Sur server12, installer le paquet `mariadb-server`. Pour la configuration
-initiale, lancer la commande `mysql_secure_installation `, puis répondre de la
+initiale, lancer la commande `mariadb-secure-installation `, puis répondre de la
 façon suivante aux différentes questions posées :
 
 ```
@@ -36,7 +38,7 @@ Reload privilege tables now? [Y/n] y
 À l'issue de cette première configuration, MariaDB n'est accessible que depuis
 la machine locale. Vérifier cela grâce à `lsof -i`.
 
-Se connecter à MariaDB via la commande `mysql` ou `mariadb`. Remarquer que le
+Se connecter à MariaDB via la commande `mariadb`. Remarquer que le
 prompt a changé. Taper la commande `status` pour voir quelques informations sur
 le serveur, dont la version et des statistiques. Quitter la session via la
 commande `quit` ou `exit`.
@@ -52,7 +54,7 @@ pour Apache :
 * `systemctl start mariadb.service` démarre le service ;
 * `systemctl restart mariadb.service` redémarre le service.
 
-Note : il est possible d'omettre `.service` dans les commandes.
+*Note : il est possible d'omettre `.service` dans les commandes.*
 
 Utiliser les commandes ci-dessus pour, successivement, arrêter, démarrer, puis
 redémarrer MariaDB. Utiliser la commande de status ainsi que `lsof -i` pour
@@ -118,21 +120,22 @@ CREATE USER 'newdb'@'localhost' IDENTIFIED BY 'password';
 
 Une fois l'utilisateur créé, quitter la session root de MariaDB et se connecter
 en tant qu'utilisateur "newdb" avec la commande `mariadb -u newdb -p`. Une fois
-connecté, tenter d'accéder à la base "newdb" avec la commande : `USE newdb;`.
+connecté, tenter d'accéder à la base "newdb" avec la commande : `USE newdb;
+SELECT * FROM students;`.
 
-Question : quel est le résultat de cette dernière commande ? Pourquoi ?
+Question : quel est le résultat de cette dernière commande ?
 
-Il faut donc ajouter des privilèges à l'utilisateur. Se déconnecter de la
-session MariaDB, et se reconnecter en tant que root, puis lancer la commande
-suivante :
+Se reconnecter à MariaDB en tant que root, puis ajouter les privilèges sur la
+base "newdb" pour l'utilisateur "newdb" :
 
 ```
-FLUSH PRIVILEGES;
+GRANT ALL PRIVILEGES ON newdb.* TO 'newdb'@'localhost';
 ```
 
-Cette commande permet d'appliquer tous les changements apportés aux privilièges
-utilisateurs. Se déconnecter de la session MariaDB, puis tenter de nouveau de
-se connecter en tant qu'utilisateur "newdb".
+Se déconnecter, puis se connecter à nouveau en tant qu'utilisateur "newdb" et
+tenter d'accéder à la base newdb.
+
+Question : quel est le résultat cette fois-ci ?
 
 ## Etape 4 : connexion distante
 
@@ -160,15 +163,15 @@ toutes les interfaces réseau.
 Tenter de se connecter à MariaDB via la commande suivante :
 
 ```
-mariadb -h 192.168.122.12 -u newdb -p
+mariadb -h 10.13.37.12 -u newdb -p
 ```
 
 Question : quel est le résultat ?
 
 Se reconnecter à MariaDB en tant que root en local, et créer un nouvel
 utilisateur "newdb", comme dans l'étape précédente, mais en remplaçant
-`'localhost'` par `'%'` et en paramétrant le mot de passe à "password2".
-**Ne pas oublier de valider les privilèges**.
+`'localhost'` par `'%'` et en paramétrant le mot de passe à "password2". Ne pas
+oublier de lui ajouter les privilèges sur la base.
 
 Tenter de se connecter de nouveau à MariaDB via la commande qui a échoué plus
 haut.

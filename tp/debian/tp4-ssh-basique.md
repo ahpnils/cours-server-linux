@@ -1,6 +1,6 @@
 [Retour au sommaire](../../README.md)
 
-# TP 5 : découverte de SSH
+# TP 4 : découverte de SSH
 
 Objectifs :
 
@@ -21,10 +21,26 @@ Un outil connu utilisé conjointement avec SSH est `rsync`, qui permet de faire
 de la synchronisation unidirectionnelle entre deux fichiers ou arborescences de
 fichiers, locaux mais aussi distants.
 
-## Etape 0 : premières connexions SSH
+## Etape 0 : création d'utilisateurs et configuration du serveur SSH
+
+Se connecter sur la machine server11 par vagrant avec la commande suivante :
+`vagrant ssh server11`. Puis, en se basant sur [le chapitre
+17](https://github.com/ahpnils/cours-linux-shell/blob/main/ch/ch17_utilisateurs_groupes.md)
+du [cours Linux Shell](https://github.com/ahpnils/cours-linux-shell), créer un
+utilisateur ayant les caractéristiques suivantes :
+- son login est `student` ;
+- son mot de passe est `password` ;
+- son shell est `/bin/bash` ;
+- son groupe principal est `student` ;
+- il aura `sudo` comme groupe secondaire ;
+- son répertoire "home" est créé.
+
+*Note : l'utilisateur vagrant dispose des droits sudo sans mot de passe.*
+
+## Etape 1 : premières connexions SSH
 
 Pour se connecter à distance à la machine server11, lancer la commande
-suivante : `ssh student@192.168.122.11`. Le format est donc `ssh
+suivante : `ssh student@10.13.37.11`. Le format est donc `ssh
 <utilisateur>@<adresse IP ou nom>`. À la première connexion, une empreinte de
 clé est affichée et OpenSSH demande une confirmation avant de continuer la
 connexion. Il s'agit du principe
@@ -44,7 +60,7 @@ cette-fois-ci, pas de demande d'acceptation de clé.
 Puis, essayer les commandes de connexion suivantes :
 
 ```
-ssh 192.168.122.11
+ssh 10.13.37.11
 ssh server11.example.com
 ssh student@server11.example.com
 ssh server11
@@ -53,7 +69,33 @@ ssh student@server11
 
 Question : les commandes ci-dessus ont-elles fonctionné ? Pourquoi ?
 
-## Etape 1 : configurer son client SSH
+En cas de destruction puis de recréation de la machine virtuelle, une
+erreur sera affichée en lors d'une tentative de connection. L'erreur
+ressemblera à ceci :
+
+```
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the ED25519 key sent by the remote host is
+SHA256:cExjJAiTchkZgtJZJSJ3eHUyEJE6Nqs0mu+L7M5I1dY.
+Please contact your system administrator.
+Add correct host key in /home/nils/.ssh/known_hosts to get rid of this message.
+Offending ECDSA key in /home/nils/.ssh/known_hosts:545
+Host key for 10.13.37.11 has changed and you have requested strict checking.
+Host key verification failed.
+```
+
+La raison est dûe au fait que lors de la première connexion, la clé d'hôte du
+principe TOFU a été enregistrée en local. Cette clé ne correspond plus à la
+réalité, et par souci de sécurité, OpenSSH nous en avertit. Dans notre cas de
+figure, le plus simple est de supprimer la clé existante grâce à la commande
+suivante : `ssh-keygen -R 10.13.37.11`.
+
+## Etape 2 : configurer son client SSH
 
 Le client OpenSSH dispose de nombreuses fonctionnalités, l'une des plus
 pratiques au quotidien est la possibilité d'utiliser un fichier de
@@ -66,7 +108,7 @@ Créer ou éditer le fichier `~/.ssh/config` et ajouter le contenu suivant :
 
 ```
 Host server11
-  Hostname 192.168.122.11
+  Hostname 10.13.37.11
 ```
 
 Une fois le fichier sauvegardé, tenter de se connecter à l'aide des commandes
@@ -84,9 +126,13 @@ concernant server11 soit comme ceci :
 
 ```
 Host server11
-  Hostname 192.168.122.11
+  Hostname 10.13.37.11
   User student
 ```
+
+*Note : lancer `nano ~/.ssh/config` ou `vim ~/.ssh/config` sans que ce fichier
+n'existe ne pose aucun problème, le fichier sera créé au moment de le
+sauvegarder.*
 
 Se connecter en utilisant la commande `ssh server11`.
 
@@ -94,14 +140,14 @@ Se connecter en utilisant la commande `ssh server11`.
 et se connecter au deux machines. Vérifier que les connexions correspondent
 bien aux machines, puis se déconnecter.
 
-## Etape 2 : transfert de fichiers avec scp
+## Etape 3 : transfert de fichiers avec scp
 
 OpenSSH permet bien plus que simplement taper des commandes en toute sécurité.
 Il permet aussi de transférer des fichiers en utilisant deux protocoles : scp
 et sftp. Il s'agit aussi des noms des outils. À noter que ces outils tirent
 parti du fichier de configuration ssh, ainsi, en conservant le fichier de
 configuration de l'étape précédente, les deux commandes `scp
-student@192.168.122.11:/etc/hosts /tmp` et `scp server11:/etc/hosts /tmp` sont
+student@10.13.37.11:/etc/hosts /tmp` et `scp server11:/etc/hosts /tmp` sont
 équivalentes.
 
 Se placer à la racine de ce dépôt, et copier le fichier `README.md` vers
@@ -125,13 +171,13 @@ dans le répertoire `/tmp` de server13.
 
 Question : quelle est la commande ?
 
-## Etape 3 : transfert de fichiers avec sftp
+## Etape 4 : transfert de fichiers avec sftp
 
 L'outil sftp permet, de la même façon que ftp, de se connecter et de parcourir
 l'arborescence du serveur distant, tout en profitant des options de ssh. Comme
 pour scp, il est donc possible de se connecter à server13
 
-## Etape 4 : authentification par clés
+## Etape 5 : authentification par clés
 
 En plus de l'authentification par mot de passe, OpenSSH gère un autre moyen
 d'authentification, l'utilisation de clés, basé sur le concept de clé privée /
@@ -219,5 +265,5 @@ trois machines, en spécifiant la clé au format ed25519, et installer cette cl�
 sur les deux machines qui ne l'ont pas. Se connecter en utilisant juste la
 commande `ssh server11`, et ainsi de suite pour les deux autres machines.
 
-Pour aller plus loin : recommencer toute l'étape 4 en spécifiant une phrase de
+Pour aller plus loin : recommencer toute l'étape 5 en spécifiant une phrase de
 passe à chaque clé.
