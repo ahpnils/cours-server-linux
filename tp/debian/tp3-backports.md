@@ -27,14 +27,14 @@ dépôts ?
 Le nouveau dépôt est disponible à l'URL suivante :
 
 ```
-deb http://deb.debian.org/debian bookworm-backports main
+deb http://deb.debian.org/debian trixie-backports main
 ```
 
-Vérifier que le fichier `/etc/apt/sources.list` contient bien l'URL
+Vérifier que le fichier `/etc/apt/sources.list.d/debian.sources` contient bien l'URL
 ci-dessus, puis mettre à jour le cache local des paquets disponibles.
 
-Recherche la présence du paquet `linux-image-cloud-amd64` avec la commande 
-`apt search -t bookworm-backports linux-image-cloud-amd64`.
+Rechercher la présence du paquet `linux-image-cloud-amd64` avec la commande 
+`apt search -t trixie-backports linux-image-cloud-amd64`.
 
 Question : quelle est la version du paquet `linux-image-cloud-amd64` dans le
 dépôt backports ?

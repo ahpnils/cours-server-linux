@@ -24,7 +24,7 @@ mais FPM est sans doute le plus populaire actuellement.
 ## Etape 0 : installation de PHP-FPM
 
 Se connecter sur server13 et passer root. Installer le paquet `php-fpm`. Un
-nouveau service `php8.2-fpm` existe, vérifier qu'il est bien lancé.
+nouveau service `php8.4-fpm` existe, vérifier qu'il est bien lancé.
 
 Dans le virtual host `server13.example.com`, ajouter dans le bloc de
 configuration `location /` les directives suivantes :
@@ -32,7 +32,7 @@ configuration `location /` les directives suivantes :
 ```
 location ~ \.php$ {
               include snippets/fastcgi-php.conf;
-              fastcgi_pass unix:/run/php/php8.2-fpm.sock;
+              fastcgi_pass unix:/run/php/php8.4-fpm.sock;
        }
 ```
 
@@ -62,21 +62,21 @@ caractéristiques sont les suivantes :
 - son shell est `/sbin/nologin`.
 
 Ensuite, transférer le fichier `fpm/server13.conf` dans le répertoire
-`/etc/php/8.2/fpm/pool.d`. Avec la commande `usermod`, ajouter l'utilisateur `www-data` (utilisé par nginx)
+`/etc/php/8.4/fpm/pool.d`. Avec la commande `usermod`, ajouter l'utilisateur `www-data` (utilisé par nginx)
 au groupe `server13` afin d'autoriser l'accès en lecture et écriture au fichier
-`server13.sock`. Relancer le service `php8.2-fpm`, puis vérifier que
+`server13.sock`. Relancer le service `php8.4-fpm`, puis vérifier que
 celui-ci est bien relancé, via systemd.
 
 Questions :
 - via systemd, combien de processus php sont lancés ?
 - dans quels pools sont-ils ?
 
-Editer le fichier `/etc/php/8.2/fpm/pool.d/server13.conf` à la ligne 103, et
-remplacer `pm = dynamic` par `pm = static`. Relancer le service `php8.2-fpm`,
+Editer le fichier `/etc/php/8.4/fpm/pool.d/server13.conf` à la ligne 103, et
+remplacer `pm = dynamic` par `pm = static`. Relancer le service `php8.4-fpm`,
 et répondre de nouveau aux deux questions précédentes.
 
 Editer le fichier `/etc/nginx/sites-enabled/server13.example.com.conf`, et
-remplacer la ligne `fastcgi_pass unix:/run/php/php8.2-fpm.sock;` par `fastcgi_pass unix:/run/php/server13.sock;`. Relancer Nginx, et regarder la page "PHPinfo". Remettre la valeur initiale de la directive, relancer Nginx et rafraîchir la page. 
+remplacer la ligne `fastcgi_pass unix:/run/php/php8.4-fpm.sock;` par `fastcgi_pass unix:/run/php/server13.sock;`. Relancer Nginx, et regarder la page "PHPinfo". Remettre la valeur initiale de la directive, relancer Nginx et rafraîchir la page. 
 
 Question : quels sont les changements entre les deux pools ?
 
