@@ -93,7 +93,11 @@ La raison est dûe au fait que lors de la première connexion, la clé d'hôte d
 principe TOFU a été enregistrée en local. Cette clé ne correspond plus à la
 réalité, et par souci de sécurité, OpenSSH nous en avertit. Dans notre cas de
 figure, le plus simple est de supprimer la clé existante grâce à la commande
-suivante : `ssh-keygen -R 10.13.37.11`.
+suivante : `ssh-keygen -R 10.13.37.11` :
+
+- vérifier le nombre de lignes du fichier `~/.ssh/known_hosts` ;
+- lancer la commande `ssh-keygen -R 10.13.37.11` ;
+- vérifier de nouveau le nombre de lignes du fichier `~/.ssh/known_hosts`.
 
 ## Etape 2 : configurer son client SSH
 
