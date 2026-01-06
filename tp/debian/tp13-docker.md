@@ -212,7 +212,7 @@ un pilote spécifique, pour, par exemple, limiter la taille du volume. Ce point
 précis ne sera pas abordé dans cette étape et est laissé à la curiosité de la
 personne lisant cette étape.
 
-Toujours sur `server13`, en tant que root, créer un volume pour Docker :
+Toujours sur `server13`, en tant que vagrant, créer un volume pour Docker :
 ```
 docker volume create volume02
 ```
