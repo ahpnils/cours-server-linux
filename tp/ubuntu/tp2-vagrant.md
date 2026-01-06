@@ -41,14 +41,14 @@ make ubuntu2204-deps # pour Ubuntu 22.04
 Déployer les machines virtuelles s'effectue tout en restant dans le répertoire
 `csl-libvirt-amd64`, via la commande suivante :
 ```
-vagrant up
+make up
 ```
 
-Cette commande va lire le fichier `Vagrantfile`, déployer les machines
+Cette commande va utiliser Vagrant pour déployer les machines
 virtuelles et les paramétrer au niveau système et réseau.
 
 Une fois les machines installées, il est possible de vérifier qu'elles sont
-démarrées via la commande `vagrant status`.
+démarrées via la commande `make status`.
 
 Question : combien de machines virtuelles sont déployées et quels sont les noms
 de celles-ci ?
@@ -60,11 +60,12 @@ Questions : quel est le nom de l'utilisateur une fois connecté ? Dispose-t'il
 des droits super-utilisateurs (aide : `sudo -i` ou `sudo -l`) ?
 
 Dans certains cas de figure, il se peut qu'il soit nécessaire de détruire une
-VM. Pour cela, utiliser la commande `vagrant destroy <nomduserver>` et valider
-via `vagrant status` qu'elle est détruite.
+VM. Pour cela, utiliser la cible `make clean VM_NAME<nomduserver>` et valider
+via `make status` qu'elle est détruite.
 
-Une cible "make" permet de détruire tout le déploiement : `make destroy`.
-Détruire tout le déploiement et le recréer.
+La cible `make clean` sans spécifier le nom de la VM permet de détruire tout 
+le déploiement. Il y a même une cible `make rebuild` qui détruit tout le 
+déploiement et le recrée. Tester ces cibles.
 
 ## Etape 3 : communication réseau entre les VM
 
