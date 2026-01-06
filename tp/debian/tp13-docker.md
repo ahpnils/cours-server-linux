@@ -135,8 +135,10 @@ Vérifier que http://10.13.37.13:8080/ répond bien. Eteindre le conteneur.
 
 ## Etape 4 : conteneur personnalisé avec un Dockerfile
 
-Transférer sur server13 le fichier `docker/Dockerfile` de ce dépôt. Depuis le
-répertoire où se trouve le fichier `Dockerfile`, lancer la commande suivante :
+Transférer sur server13 le fichier 
+`[docker/Dockerfile](https://github.com/ahpnils/cours-server-linux/blob/main/docker/Dockerfile)` 
+de ce dépôt. Depuis le répertoire où se trouve le fichier `Dockerfile`, 
+lancer la commande suivante :
 ```
 docker build -t cours-linux/debian-apache2:latest ./
 ```
