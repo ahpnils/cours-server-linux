@@ -20,7 +20,7 @@ Pour aller plus loin : https://fr.wikipedia.org/wiki/Virtualisation#Isolateur
 Il existe plusieurs technologies de conteneurs, généralement attachées à un
 système d'exploitation donné (les zones pour Solaris, les jails pour FreeBSD).
 Sous Linux, la solution la plus populaire est
-[Docker](https://www.docker.com/). Il en exsite d'autres, comme
+[Docker](https://www.docker.com/). Il en existe d'autres, comme
 [LXC](https://linuxcontainers.org/lxc/) ou [podman](https://podman.io/).
 
 ## Etape 0 : installation de Docker
@@ -136,7 +136,7 @@ Vérifier que http://10.13.37.13:8080/ répond bien. Eteindre le conteneur.
 ## Etape 4 : conteneur personnalisé avec un Dockerfile
 
 Transférer sur server13 le fichier 
-`[docker/Dockerfile](https://github.com/ahpnils/cours-server-linux/blob/main/docker/Dockerfile)` 
+[`docker/Dockerfile`](../../docker/Dockerfile) 
 de ce dépôt. Depuis le répertoire où se trouve le fichier `Dockerfile`, 
 lancer la commande suivante :
 ```
@@ -152,8 +152,7 @@ Depuis l'hôte, se rendre sur http://10.13.37.13:8080/
 
 Pour aller plus loin : à partir du Dockerfile fourni, récupérer le contenu [de
 ce dépôt](https://github.com/ahpnils/anotherhomepage.org/tree/main/content) et
-le servir via Docker. En bonus ++, paramétrer Nginx sur server13 en tant que
-reverse-proxy sur http://127.0.0.1:8080.
+le servir via Docker.
 
 ## Etape 5 : stockage permanent, méthode 1
 
@@ -167,7 +166,7 @@ qu'ils ont terminé de servir, ils sont détruits. Ceci pose quelques difficult�
 - dans le cas de traces (fichiers journaux par exemple), leur stockage pérenne
   et leur conservation.
 
-Nous avons vu grâce à l'étape 4 comment, dans certains de figure, contourner
+Nous avons vu grâce à l'étape 4 comment, dans certains cas de figure, contourner
 certaines difficultés. Il est possible de créer de nouveaux conteneur, avec des
 configurations et des contenus à jour. Mais dans certains cas, un stockage
 permanent est nécessaire.
@@ -179,8 +178,8 @@ Se connecter sur `server13` puis passer root. Créer l'arborescence suivante :
 
 ```
 /srv/
-├── docker
-│   └── volume01
+└── docker
+    └── volume01
 ```
 
 Ensuite, créer un fichier texte nommé `hello.txt` dans le répertoire `volume01`

@@ -5,7 +5,7 @@
 Objectifs :
 
 - installer Vagrant ;
-- déployer et gérer 3 machines virtuelles Debian 12 avec Vagrant.
+- déployer et gérer 3 machines virtuelles Debian 13 avec Vagrant.
 
 ## Etape 0 : récupération du dépôt GitHub du projet
 
@@ -60,7 +60,7 @@ Questions : quel est le nom de l'utilisateur une fois connecté ? Dispose-t'il
 des droits super-utilisateurs (aide : `sudo -i` ou `sudo -l`) ?
 
 Dans certains cas de figure, il se peut qu'il soit nécessaire de détruire une
-VM. Pour cela, utiliser la cible `make clean VM_NAME<nomduserver>` et valider
+VM. Pour cela, utiliser la cible `make clean VM_NAME=<nomduserver>` et valider
 via `make status` qu'elle est détruite.
 
 La cible `make clean` sans spécifier le nom de la VM permet de détruire tout 

@@ -10,23 +10,21 @@ de conteneurisation.
 
 Liste des TP :
 
-* TP 0 : [installation de QEMU/KVM et de Libvirt, sur un OS Ubuntu](tp/ubuntu/tp0-kvm-libvirt.md) ;
-* TP 1 : [paramètres supplémentaires de libvirt](tp/ubuntu/tp1-kvm-libvirt.md) ;
-* TP 2 : [installation de Vagrant](tp/ubuntu/tp2-vagrant.md) ;
-* TP 3 : [Backports Debian](tp/debian/tp3-backports.md) ;
-* TP 4 : [découverte de SSH](tp/debian/tp4-ssh-basique.md) ;
-* TP 5 : [installation et paramétrage basique du serveur web Apache](tp/debian/tp5-apache-basique.md) ;
-* TP 6 : [les virtual hosts dans Apache](tp/debian/tp6-apache-virtual-hosts.md);
-* TP 7 : [découverte de mod_php](tp/debian/tp7-apache-mod_php.md) ;
-* TP 8 : [MariaDB](tp/debian/tp8-mariadb.md) ;
-* TP 9 : [PHPMyAdmin](tp/debian/tp9-phpmyadmin.md) ;
+* TP 0 : [installation de QEMU/KVM et de Libvirt, sur un OS Ubuntu](tp/ubuntu/tp00-kvm-libvirt.md) ;
+* TP 1 : [paramètres supplémentaires de libvirt](tp/ubuntu/tp01-kvm-libvirt.md) ;
+* TP 2 : [installation de Vagrant](tp/ubuntu/tp02-vagrant.md) ;
+* TP 3 : [Backports Debian](tp/debian/tp03-backports.md) ;
+* TP 4 : [découverte de SSH](tp/debian/tp04-ssh-basique.md) ;
+* TP 5 : [installation et paramétrage basique du serveur web Nginx](tp/debian/tp05-nginx-basique.md) ;
+* TP 6 : [les virtual hosts dans Nginx](tp/debian/tp06-nginx-virtual-hosts.md);
+* TP 7 : [Nginx et PHP-FPM](tp/debian/tp07-nginx-php-fpm.md) ;
+* TP 8 : [MariaDB](tp/debian/tp08-mariadb.md) ;
+* TP 9 : [PHPMyAdmin](tp/debian/tp09-phpmyadmin.md) ;
 * TP 10 : [WordPress](tp/debian/tp10-wordpress.md) ;
-* TP 11 : [Nginx](tp/debian/tp11-nginx.md) ;
-* TP 12 : [Nginx et PHP-FPM](tp/debian/tp12-nginx-php-fpm.md) ;
-* TP 13 : [Conteneurs et Docker](tp/debian/tp13-docker.md) ;
-* TP 14 : [sudo](tp/debian/tp14-sudo.md) ;
-* TP 15 : [deux usages avancés d'OpenSSH](tp/debian/tp15-ssh_avance.md) ;
-* TP 16 : [HTTPS sur Apache](tp/debian/tp16-https_apache.md) ;
-* TP 17 : [HTTPS sur Nginx](tp/debian/tp17-https_nginx.md) ;
-* TP 18 : Python et UWSGI ;
-* TP 19 : sujets sécurité.
+* TP 11 : [Conteneurs et Docker](tp/debian/tp11-docker.md) ;
+* TP 12 : [Nginx en reverse-proxy](tp/debian/tp12-nginx-reverse-proxy.md) ;
+* TP 13 : [sudo](tp/debian/tp13-sudo.md) ;
+* TP 14 : [deux usages avancés d'OpenSSH](tp/debian/tp14-ssh_avance.md) ;
+* TP 15 : [HTTPS sur Nginx](tp/debian/tp15-https_nginx.md) ;
+* TP 16 : Python et UWSGI ;
+* TP 17 : sujets sécurité.

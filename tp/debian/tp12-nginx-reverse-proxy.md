@@ -1,12 +1,12 @@
 [Retour au sommaire](../../README.md)
 
-# TP 11 : À la découverte de Nginx
+# TP 12 : Nginx en tant que reverse-proxy
 
 Objectifs :
 
-- installer le serveur HTTP Nginx ;
-- créer des virtual hosts ;
-- l'utiliser en tant que mandataire inverse (reverse proxy).
+- installer le serveur HTTP Nginx sur server13;
+- l'utiliser en tant que mandataire inverse (reverse proxy) pour des conteneurs
+  Docker.
 
 ## Introduction
 
@@ -27,16 +27,8 @@ mais par une entreprise. Le logiciel d'origine est libre, sous licence BSD
 
 ## Etape 0 : installation
 
-Comme bon nombre de distributions Linux et BSD, Nginx est disponible via des
-paquets binaires pré-compilés pour Debian. 
-
-Se connecter en ssh sur server13, puis passer root. Installer Nginx via la
-commande `apt install nginx`. Se rendre via le navigateur de l'hôte sur
-http://10.13.37.13 et vérfier que Nginx est bien lancé.
-
-Consulter le répertoire `/etc/nginx/` et comparer par rapport à
-`/etc/apache2/`, en particulier pour les répertoires des virtual hosts et des
-modules.
+Se connecter en ssh sur server13, puis installer Nginx comme vu au TP 5.
+Se rendre via le navigateur de l'hôte sur http://10.13.37.13 et vérfier que Nginx est bien lancé.
 
 ## Etape 1 : virtual hosts
 
@@ -46,6 +38,7 @@ configuration `/etc/hosts` et ajouter la ligne suivante :
 ```
 10.13.37.13 server13 server13.example.com www13.example.com www13
 ```
+
 Une fois le fichier sauvé, s'assurer que la machine server13 est bien
 accessible via les noms ajoutés ci-dessus, par exemple avec la commande `ping`.
 Maintenant, vérifier que Nginx répond lors de requêtes vers les noms ajoutes.
@@ -63,22 +56,10 @@ Se connecter sur server13 et passer root. Créer l'aborescence suivante :
 Ajouter un fichier `index.html` au contenu libre dans le répertoire `public`.
 
 Transférer le fichier `nginx/server13.example.com.conf` de ce dépôt dans le
-répertoire `/etc/nginx/sites-available/` de server13.
-
-Nginx ne possède pas de programme d'aide comme Apache pour simplifier la
-création des liens. Se rendre dans `/etc/nginx/sites-enabled/`, puis créer un
-lien symbolique du fichier de configuration récemment transféré : `ln -sv
-/etc/nginx/sites-available/server13.example.com.conf ./`. Enfin, supprimer le
-bloc server par défaut : `rm /etc/nginx/sites-enabled/default`. Nginx étant démarré
-comme n'importe quel service, utiliser `systemctl restart nginx` pour le
-redémarrer.
+répertoire `/etc/nginx/sites-enabled/` de server13.
 
 Vérifier ensuite que http://server13.example.com fonctionne bien et renvoie
 vers notre virtual host, et que les bons fichiers de log sont écrits.
-
-À partir ce modèle, créer une arborescence et un fichier de configuration pour
-répondre à http://www13.example.com.
-
 
 ## Etape 2 : reverse proxy basique
 
@@ -107,3 +88,44 @@ Sur server13; éditer le fichier de configuration `/etc/hosts/` et ajouter la li
 Puis, modifier la directive `proxy_pass` pour tenter d'accéder en particulier à
 server11.example.com puis à www11.example.com. Ne pas oublier de relancer Nginx
 à chaque modification du fichier de configuration.
+
+## Etape 3 : reverse proxy avancé
+
+Grâce aux commandes apprises lors de l'étape 2 du TP sur Docker, lancer un
+conteneur docker [createleafcloud/echoip](https://github.com/leafcloudhq/echoip) et rendre
+ce conteneur accessible sur le port 8080. Vérifier que le service est
+disponible à l'URL http://10.13.37.13:8080 .
+
+Changer ensuite la directive `proxy_pass` de Nginx sur le site
+http://server13.example.com pour le faire pointer sur http://10.13.37.13:8080 .
+Tester, puis ensuite faire pointer le reverse proxy sur http://127.0.0.1:8080 .
+
+Questions :
+- quelle est l'IP affichée via http://10.13.37.13:8080 ?
+- quelle est l'IP affichée via http://server13.example.com quand il pointe sur http://10.13.37.13:8080 ?
+- quelle est l'IP affichée via http://server13.example.com quand il pointe sur http://127.0.0.1:8080 ?
+
+Ajouter ensuite les directives suivantes sous la directive `proxy_pass` :
+
+```
+proxy_set_header Host $host;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+```
+
+Relancer Nginx et visiter de nouveau http://server13.example.com .
+
+Questions :
+- quel est maintenant le nom du site web ?
+- quelle est l'IP affichée ?
+
+Maintenant, stopper le conteneur docker et le relancer via la commande suivante
+: `docker run --rm --name echoip -d -p 8080:8080 --entrypoint
+"/opt/echoip/echoip" createleafcloud/echoip -p -H X-Forwarded-For`. On notera
+l'ajout d'options pour :
+- supprimer le conteneur lors de son arrêt ;
+- modifier la commande lancée dans le conteneur (l'entrypoint) pour prendre en
+  charge l'en-tête HTTP `X-Forwarded-For`.
+
+Questions :
+- quel est maintenant le nom du site web ?
+- quelle est l'IP affichée ?

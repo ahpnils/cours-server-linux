@@ -23,7 +23,7 @@ avertissement sur le retrait des liens de compatibilité MySQL <-> MariaDB.
 ## Etape 0 : installation
 
 Sur server12, installer le paquet `mariadb-server`. Pour la configuration
-initiale, lancer la commande `mariadb-secure-installation `, puis répondre de la
+initiale, lancer la commande `mariadb-secure-installation`, puis répondre de la
 façon suivante aux différentes questions posées :
 
 ```

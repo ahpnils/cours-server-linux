@@ -1,6 +1,6 @@
 [Retour au sommaire](../../README.md)
 
-# TP 16 : HTTPS avec Apache
+# TP 17 : HTTPS avec Nginx
 
 Objectifs :
 
@@ -19,19 +19,22 @@ Quelques points-clés sur HTTPS :
 - il faut impérativement une clé privée et un certificat ;
 - grâce à SNI (Server-Name Indicator), il est possible d'héberger plusieurs
   sites web (chacun ayant son certificat) sur une même adresse IP ; avant son
-  arrivée, chaque virtual host dans Apache devait avoir une adresse IP
+  arrivée, chaque virtual host devait avoir une adresse IP
   propre pour pouvoir faire du HTTPS.
 
 ## Etape 0 : prérequis
 
-HTTPS est disponible dans Apache grâce au module `ssl_module`. Ce module est fort
-heureusement disponible dans Debian avec la paquet `apache2`. Dans notre cas,
-il est donc déjà installé sur `server11`.
+Certains serveurs web "historiques" embarquent HTTPS comme module, désactivé
+par défaut. Nginx embarque HTTPS nativement, et certaines versions récentes
+permettent même d'obtenir un certificat très simplement (d'autres serveurs web
+modernes le permettent aussi). Mais nous allons faire les choses "à l'ancienne"
+dans ce TP.
 
-Question : le module `ssl_module` est-il activé sur `server11` ?
-
-Se connecter sur `server11`, activer le module avec la commande `a2enmod
-ssl`, puis redémarrer Apache. Vérifier que le module est bien activé.
+Bien souvent, en environnement de test, générer un certificat peut s'avérer
+fastidieux. C'est pourquoi il existe un paquet Debian nommé `ssl-cert` qui
+comporte, entre autres un certificat auto-signé. Ce TP a néanmoins pour
+objectif de générer soi-même un tel certificat, nous n'utiliserons donc pas ce
+raccourci.
 
 ## Etape 1 : générer un certificat autosigné
 
@@ -61,31 +64,28 @@ Lancer (en tant que root sur `server11`) les commandes suivantes :
 
 ```
 apt -y install openssl
-mkdir -vp /etc/apache2/selfcerts
-openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout /etc/apache2/selfcerts/www11.example.com.key -out /etc/apache2/selfcerts/www11.example.com.crt -subj '/C=FR/ST=IdF/L=Paris/O=Example Corp/OU=Dev/CN=example/CN=www11.example.com'
+mkdir -vp /etc/nginx/selfcerts
+openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout /etc/nginx/selfcerts/www13.example.com.key -out /etc/nginx/selfcerts/www13.example.com.crt -subj '/C=FR/ST=IdF/L=Paris/O=Example Corp/OU=Dev/CN=example/CN=www13.example.com'
 ```
 
 Décortiquons la dernière commande : elle a créé et signé un certificat d'une
 durée de vie de 365 jours, la clé privée se trouve dans
-`/etc/apache2/selfcerts/www11.example.com.key` et le certificat se trouve dans
-`/etc/apache2/selfcerts/www11.example.com.crt`. Ce certificat est valable pour
-le nom `www11.example.com`.
+`/etc/nginx/selfcerts/www13.example.com.key` et le certificat se trouve dans
+`/etc/nginx/selfcerts/www13.example.com.crt`. Ce certificat est valable pour
+le nom `www13.example.com`.
 
-## Etape 1 : configuration initiale HTTPS
+## Etape 1 : configuration virtual host HTTPS
 
 La simple création d'un certificat ne suffit pas à avoir un site HTTPS. Il nous
-faut aussi créer un virtual host. Dans le répertoire `apache` de ce dépôt se
-trouve le fichier `ssl_www11.example.com.conf`. Le transférer sur `server11`
-dans l'emplacement `/etc/apache2/sites-available`. Puis, activer la virtual
-host via la commande `a2ensite ssl_www11.example.com` (en tant que root ou via
-`sudo`).
+faut aussi créer un virtual host. Dans le répertoire `nginx` de ce dépôt se
+trouve le fichier `ssl_www13.example.com.conf`. Le transférer sur `server13`
+dans l'emplacement `/etc/nginx/sites-enabled`. Redémarrer Nginx.
 
-Visiter http://www11.example.com puis https://www11.example.com, en autorisant
-le navigateur à s'y connecter. Puis regarder les deux fichiers de configuration
-des virtual hosts.
+Visiter http://server13.example.com puis https://server13.example.com, en
+autorisant le navigateur à s'y connecter.
 
-Question : quelles sont les directives supplémentaires dans
-`ssl_www11.example.com.conf` ? Quel est leur usage ?
+Question : quelles sont les directives supplémentaires du fichier de
+configuration ajouté ? À quoi correspondent-elles ?
 
 Vérifier que les requêtes apparaissent bien dans les logs.
 
@@ -93,22 +93,16 @@ Vérifier que les requêtes apparaissent bien dans les logs.
 
 Si un même site est disponible en HTTP et HTTPS, la redirection n'est pas
 automatique. Pour éviter que des utilisateurs restent sur le site HTTP, il est
-possible d'ajouter une règle de redirection. Plusieurs manières de faire cette
-redirection existent. L'une d'entre elles utilise un module nommé
-`mod_rewrite`.
+possible d'ajouter une règle de redirection. 
 
-Comme pour le module `ssl`, activer le module `rewrite` : `a2enmod rewrite`.
-Redémarrer Apache. Ajouter ensuite dans la configuration du virtual host
-`www11.example.com` les directives suivantes :
-
+Ajouter dans le virtual host de `server13.example.com` la ligne suivante :
 ```
-<IfModule mod_rewrite.c>
-   RewriteEngine On
-   RewriteCond %{HTTPS} !=on
-   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
-</IfModule>
+return 301 https://$host$request_uri;
 ```
 
-Redémarrer de nouveau Apache, et se rendre sur http://www11.example.com. La
+Redémarrer Nginx, et se rendre sur http://server13.example.com. La
 redirection devrait fonctionner.
 
+Note : si la partie reverse-proxy est toujours active, il sera peut-être
+nécessaire d'ajouter la directive Nginx `proxy_set_header X-Forwarded-Proto
+$scheme;` pour que cela fonctionne mieux.
