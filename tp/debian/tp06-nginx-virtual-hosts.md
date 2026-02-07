@@ -1,6 +1,6 @@
 [Retour au sommaire](../../README.md)
 
-# TP 6 : les virtual hosts dans Apache
+# TP 6 : les virtual hosts dans Nginx
 
 Objectifs :
 
@@ -21,14 +21,14 @@ Sur sa machine locale, ouvrir un terminal, et passer root. Editer le fichier de
 configuration `/etc/hosts` et ajouter la ligne suivante :
 
 ```
-10.13.37.11 server11.example.com server11 www11.example.com
+10.11.37.11 server11.example.com server11 www11.example.com www11 wp11.example.com wp11
 ```
 
 Une fois le fichier sauvé, s'assurer que la machine server11 est bien
 accessible via les noms ajoutés ci-dessus, par exemple avec la commande `ping`.
-Maintenant, vérifier qu'Apache répond lors de requête vers les noms ajoutés.
+Maintenant, vérifier que Nginx répond lors de requête vers les noms ajoutés.
 
-Question : qu'affiche Apache lors des requêtes ?
+Question : qu'affiche Nginx lors des requêtes ?
 
 ## Etape 1 : création d'un virtual host
 
@@ -44,8 +44,8 @@ Se connecter sur server11 et passer root. Créer l'arborescence suivante :
 
 Ajouter un fichier `index.html` au contenu libre dans le répertoire `public`.
 
-Transférer le fichier `apache/server11.example.com.conf` de ce dépôt dans le
-répertoire `/etc/apache2/sites-available/` de server11.
+Transférer le fichier `nginx/server11.example.com.conf` de ce dépôt dans le
+répertoire `/etc/nginx/sites-available/` de server11.
 
 À l'aide d'un navigateur, visiter les URLs suivantes :
 - http://server11
@@ -55,12 +55,12 @@ répertoire `/etc/apache2/sites-available/` de server11.
 Question : quel est le chemin du fichier HTML servi ? De quel fichier de
 configuration vient-il ?
 
-Prendre note du contenu de `/etc/apache2/sites-enabled` et
-`/etc/apache2/sites-available`.
-Conformément à la documentation du fichier par défaut, utiliser la commande
-`a2ensite server11.example.com` pour activer le fichier de virtual host ajouté,
-et utiliser la commande `a2dissite 000-default` pour retirer le fichier de
-virtual host par défaut.
+Prendre note du contenu de `/etc/nginx/sites-enabled` et
+`/etc/nginx/sites-available`.
+Créer un lien symbolique `/etc/nginx/sites-enabled/server11.example.com.conf`
+pointant vers `/etc/nginx/sites-available/server11.example.com.conf` pour
+activer le fichier de server ajouté, puis supprimer le lien
+`/etc/nginx/sites-enabled/default` qui contient le server par défaut.
 
 Visiter de nouveau les URL sus-mentionnées. Consulter le fichier activé et lire
 le contenu des fichiers de log paramétrés.
@@ -68,7 +68,7 @@ le contenu des fichiers de log paramétrés.
 Question : quel est le chemin du fichier HTML servi ? De quel fichier de
 configuration vient-il ? 
 
-En utilisant le fichier de virtual host fourni comme modèle, créer un fichier
+En utilisant le fichier de server fourni comme modèle, créer un fichier
 `www11.example.com.conf` ainsi qu'une arborescence et une page HTML répondant
 au site *www11.example.com*, puis vérifier que des requêtes sur
 server11.example.com et sur www11.example.com vont bien sur les sites
@@ -76,17 +76,23 @@ respectifs, et dans les logs respectifs.
 
 ## Etape 2 : le format des logs
 
-L'oeil averti aura remarqué que les contenus de `/var/log/apache2/access.log`
+L'oeil averti aura remarqué que les contenus de `/var/log/nginx/access.log`
 et `/srv/www/server11.example.com/log/access.log` n'ont pas tout à fait le même
 format.
 
-Rechercher dans les fichiers `/etc/apache2/conf-enabled/other-vhosts-access-log.conf` et
-`/etc/apache2/sites-enabled/server11.example.com.conf` les lignes commençant
-par *CustomLog* et remarquer que le format défini est différent. Retrouver les
-deux définitions de format dans `/etc/apache2/apache2.conf`.
+Rechercher dans les fichiers `/etc/nginx/sites-available/default` et
+`/etc/nginx/sites-enabled/server11.example.com.conf` les lignes commençant
+par *access_log* et remarquer que le format défini est différent. Retrouver les
+deux définitions de format dans `/etc/nginx/nginx.conf`.
 
 Question : en s'aidant de la [documentation
-officielle](https://httpd.apache.org/docs/2.4/fr/mod/mod_log_config.html#formats),
+officielle](https://httpd.nginx.org/docs/2.4/fr/mod/mod_log_config.html#formats),
 à quoi correspondent les champs des deux formats définis ? Quelles sont les
 différences entre ces deux formats ?
 
+## Etape 3 : copier-coller
+
+À partir de la configuration et de l'arborescence pour `server11.example.com`,
+créer les arborescences et fichiers de configuration pour `www11.example.com`
+et `wp11.example.com`. Chaque site devra contenir une page d'index indiquant le
+nom du site.

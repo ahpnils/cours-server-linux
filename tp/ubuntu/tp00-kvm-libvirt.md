@@ -118,7 +118,7 @@ Cliquer sur Terminer. Le démarrage de la machine virtuelle commence.
 
 Pour se connecter sur l'OS invité, l'utilisateur est `root`, et il n'y a pas de
 mot de passe. Attention, le clavier est configuré en QWERTY (il est possible
-d'utiliser la commande `setup-keyboard` pour y remédier), et lors du premier
+d'utiliser la commande `setup-keymap` pour y remédier), et lors du premier
 clic dans l'écran de la machine virtuelle, un message à propos de la capture de
 la souris et du clavier sera affiché (on peut autoriser / allow sans risque).
 

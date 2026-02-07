@@ -40,21 +40,49 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'10.13.37.11' IDENTIFIED BY 'remotepass' W
 
 ## Etape 1 : installation
 
-Sur server11, installer le paquet `phpmyadmin`. Ensuite, activer la
-configuration via la commande `a2enconf phpmyadmin`. Vérifier la présence d'un
-lien symbolique `phpmyadmin.conf` dans `/etc/apache2/conf-enabled`, et
-recharger Apache via `systemctl reload apache2`. 
+Sur server11, installer le paquet `phpmyadmin`. Lors de l'installation, il est
+proposer de reconfigurer un serveur web automatiquement, n'en sélectionner
+aucun. À la question "Configure database for phpmyadmin with dbconfig-common?",
+répondre "No".
 
-Accéder depuis la machine hôte aux URLs suivantes :
-- http://server11.example.com/phpmyadmin/ ;
-- http://www11.example.com/phpmyadmin/ ;
-- http://10.13.37.11/phpmyadmin/.
+Ensuite, créer un lien symbolique pour le fichier de configuration : `ln -sv
+/etc/phpmyadmin/config.inc.php /usr/share/phpmyadmin/config.inc.php`. Éditer
+`/etc/phpmyadmin/config-db.php`, et remplacer `'localhost';` par `'10.13.37.12';` pour se connecter à MariaDB sur server12.
 
-Consulter le fichier `/etc/apache2/conf-enabled/phpmyadmin.conf`.
+Ajouter ensuite la configuration suivante dans le bloc server de 
+`/etc/nginx/sites-enabled/server11.example.com.conf` :
+
+```
+location /phpmyadmin/ {
+    root /usr/share/;
+    index index.php;
+    location ~ ^/phpmyadmin/(.+\.php)$ {
+      try_files $uri =404;
+      root /usr/share/;
+      fastcgi_pass unix:/var/run/php/php8.4-fpm.sock;
+      fastcgi_index index.php;
+      fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+      include /etc/nginx/fastcgi_params;
+    }
+    location ~* ^/phpmyadmin/(.+\.(jpg|jpeg|gif|css|png|js|ico|html|xml|txt))$ {
+      root /usr/share/;
+    }
+  }
+```
+
+À quoi servent toutes ces directives ? Certaines viennent préciser où chercher
+les fichiers de l'application afin d'être servies depuis le chemin
+`/phpmyadmin/`, d'autres viennent permettre l'exécution dans PHP-FPM des
+fichiers PHP.
+
+On remarquera les différences entre le bloc du TP PHP-FPM et celui ci-dessus
+sur les variables de configuration FastCGI pour la configuration de PHP (en
+particulier l'inclusion de fichiers différents).
+
+Accéder depuis la machine hôte à http://server11.example.com/phpmyadmin/ ;
 
 Questions :
 - où est installé PHPMyAdmin ?
-- pourquoi les URLs ci-dessus fonctionnent ?
 
 Il faut encore paramétrer PHPMyAdmin. Sous Debian, il est possible de faire ce
 paramétrage dans le fichier `/etc/phpmyadmin/config-db.php`. Editer ce fichier

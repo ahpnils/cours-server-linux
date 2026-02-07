@@ -274,5 +274,5 @@ passe à chaque clé.
 
 Attention !!! OpenSSH est très pratique sur de nombreux aspects, et possède de
 nombreuses options de configuration, qui peuvent abaisser la sécurité du
-système. Il est recommandé de lire le document "[Usage sécurisé d'(Open)SSH]https://messervices.cyber.gouv.fr/guides/usage-securise-dopenssh()" 
+système. Il est recommandé de lire le document "[Usage sécurisé d'(Open)SSH](https://messervices.cyber.gouv.fr/guides/usage-securise-dopenssh)" 
 avant de déployer une configuration en production.
