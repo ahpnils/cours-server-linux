@@ -26,5 +26,4 @@ Liste des TP :
 * TP 13 : [sudo](tp/debian/tp13-sudo.md) ;
 * TP 14 : [deux usages avancés d'OpenSSH](tp/debian/tp14-ssh_avance.md) ;
 * TP 15 : [HTTPS sur Nginx](tp/debian/tp15-https_nginx.md) ;
-* TP 16 : Python et UWSGI ;
-* TP 17 : sujets sécurité.
+* TP 16 : sujets sécurité.
