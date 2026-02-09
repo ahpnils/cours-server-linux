@@ -201,7 +201,7 @@ clés existent déjà dans le répertoire `~/.ssh/` (des fichiers commençant pa
 vont créer de nouveaux fichiers afin de ne pas perturber l'existant.
 
 Générer une première clé avec la commande suivante, sans entrer de phrase de
-passe : `ssh-keygen -f ~/.ssh/student_rsa`.
+passe : `ssh-keygen -f ~/.ssh/id_student`.
 
 Questions :
 - quel est le fichier de clé privée ?
@@ -210,15 +210,19 @@ Questions :
 - quels sont les droits sur les fichiers de clés ?
 
 Installer la clé sur un des serveurs distants avec la commande suivante :
-`ssh-copy-id -i ~/.ssh/student_rsa server11`. Suivre les consignes du
+`ssh-copy-id -i ~/.ssh/id_student server11`. Suivre les consignes du
 programme. Se connecter à server11 via la commande `ssh -i
-~/.ssh/student_rsa server11`.
+~/.ssh/id_student server11`.
 
 Questions :
 - quel est le contenu du fichier `~/.ssh/authorized_keys` ?
 - quels sont les droits sur ce fichier ?
 - à quel fichier de clé sur le poste de travail correspond le contenu de
   `~/.ssh/authorized_keys` de server11 ?
+
+Les versions récentes d'OpenSSH génèrent par défaut des clés de type "ED25519".
+Néanmoins il peut arriver que pour se connecter à un serveur ancien il faille
+utiliser l'algorithme RSA. Pour se faire, on utilise alors l'option `-t rsa`.
 
 Pour les clés de type RSA, il est possible de spécifier la taille des clés. Une
 taille de clé plus importante permet, en théorie, une plus grande sécurité,
@@ -227,6 +231,7 @@ suivie du nombre de bits composant la taille de la clé.
 
 À l'aide des commandes précédentes, générer une paire de clés ayant les
 propriétés suivantes :
+- type de clé : RSA ;
 - taille de clé de 4096 bits ;
 - le fichier de clé privée se trouve dans `~/.ssh/student_rsa_4k`
 
@@ -239,10 +244,6 @@ OpenSSH dispose aussi d'autres types de clés, correspondant à d'autres
 technologies de chiffrement, comme les courbes elliptiques. Les commandes `man
 ssh-keygen` et `ssh-keygen --help` permettent de voir les différents type de
 chiffrement disponibles.
-
-Rechercher comment générer une clé de type *ed25519*, et en générer une se
-nommant `student_ed25519`, puis l'ajouter au fichier `authorized_keys` de
-server11 et se connecter en spécifiant cette clé.
 
 Question : en regardant `authorized_keys`, quelle est la clé publique la plus
 petite, et quelle est la plus grande, en nombre de caractères ?
