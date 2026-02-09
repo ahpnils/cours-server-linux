@@ -44,7 +44,7 @@ sudo usermod -a -G libvirt $(whoami)
 Attention : pour que l'ajout du groupe soit pris en compte, il faut fermer sa
 session puis en ouvrir une nouvelle.
 
-Questions : comment vérifier que l'utilisateur courant est membre des groupes "libvirt" et "kvm" ?
+Question : comment vérifier que l'utilisateur courant est membre des groupes "libvirt" et "kvm" ?
 
 Bien que les logiciels ait été installés, des modules ou des services ne sont
 pas correctement démarrés. Le plus simple est de redémarrer l'ordinateur :
