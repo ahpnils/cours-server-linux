@@ -21,7 +21,7 @@ Sur sa machine locale, ouvrir un terminal, et passer root. Editer le fichier de
 configuration `/etc/hosts` et ajouter la ligne suivante :
 
 ```
-10.11.37.11 server11.example.com server11 www11.example.com www11 wp11.example.com wp11
+10.13.37.11 server11.example.com server11 www11.example.com www11 wp11.example.com wp11
 ```
 
 Une fois le fichier sauvé, s'assurer que la machine server11 est bien
