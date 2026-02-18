@@ -95,9 +95,16 @@ remplacer `pm = dynamic` par `pm = static`. Relancer le service `php8.4-fpm`,
 et répondre de nouveau aux deux questions précédentes.
 
 Editer le fichier `/etc/nginx/sites-enabled/server11.example.com.conf`, et
-remplacer la ligne `fastcgi_pass unix:/run/php/php8.4-fpm.sock;` par `fastcgi_pass unix:/run/php/server11.sock;`. Relancer Nginx, et regarder la page "PHPinfo". Remettre la valeur initiale de la directive, relancer Nginx et rafraîchir la page. 
+remplacer la ligne `fastcgi_pass unix:/run/php/php8.4-fpm.sock;` par `fastcgi_pass unix:/run/php/server11.sock;`. Relancer Nginx, et regarder la page "PHPinfo". 
+
+Question : quelle erreur est affchée ?
+
+Ajouter l'utilisateur `www-data` au groupe `server11` puis relancer Nginx ? La
+page "PHPinfo" s'affiche-t'elle ?
 
 Question : quels sont les changements entre les deux pools ?
+
+Remettre la valeur initiale de la directive, relancer Nginx et rafraîchir la page. 
 
 ## Etape 2 : installation d'une application PHP
 
