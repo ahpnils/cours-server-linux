@@ -119,8 +119,8 @@ Question : que contient ce fichier ? (l'ouvrir avec un éditeur de texte)
 ## Etape 4 : création d'un utilisateur et d'une base de données
 
 Ouvrir une session root dans PHPMyAdmin, et se rendre dans l'onglet "user
-accounts". Créer un nouvel utilisateur nommé `blog`, pouvant se connecter
-depuis n'importe où, et ayant pour mot de passe `myblog`. Avant la création, ne
+accounts". Créer un nouvel utilisateur nommé `foobar`, pouvant se connecter
+depuis n'importe où, et ayant pour mot de passe `foobaz`. Avant la création, ne
 pas oublier de cocher la case "Create database with same name and grant all
 privileges".
 
