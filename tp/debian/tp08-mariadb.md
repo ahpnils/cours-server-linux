@@ -125,17 +125,24 @@ SELECT * FROM students;`.
 
 Question : quel est le résultat de cette dernière commande ?
 
-Se reconnecter à MariaDB en tant que root, puis ajouter les privilèges sur la
-base "newdb" pour l'utilisateur "newdb" :
+Se reconnecter à MariaDB en tant que root, et observer les permissions globales
+via la commande `SHOW GRANTS;`. On peut aussi limiter l'affichage des
+permissions à l'utilisateur créé plus haut via : `SHOW GRANTS FOR 'newdb'@'localhost';`.
+
+Toujours dans le shell root de MariaDB, ajouter les privilèges sur la base "newdb" 
+pour l'utilisateur "newdb" :
 
 ```
 GRANT ALL PRIVILEGES ON newdb.* TO 'newdb'@'localhost';
 ```
 
+Vérifier les permissions via les commandes précédentes.
+
 Se déconnecter, puis se connecter à nouveau en tant qu'utilisateur "newdb" et
 tenter d'accéder à la base newdb.
 
 Question : quel est le résultat cette fois-ci ?
+
 
 ## Etape 4 : connexion distante
 
@@ -168,13 +175,16 @@ mariadb -h 10.13.37.12 -u newdb -p
 
 Question : quel est le résultat ?
 
-Se reconnecter à MariaDB en tant que root en local, et créer un nouvel
-utilisateur "newdb", comme dans l'étape précédente, mais en remplaçant
+Se reconnecter à MariaDB en tant que root en local, puis lancer la commande
+`SELECT User,host FROM mysql.user;`, qui permet de lister les utilisateurs.
+
+Ensuite, créer un nouvel utilisateur "newdb", comme dans l'étape précédente, mais en remplaçant
 `'localhost'` par `'%'` et en paramétrant le mot de passe à "password2". Ne pas
 oublier de lui ajouter les privilèges sur la base.
 
 Tenter de se connecter de nouveau à MariaDB via la commande qui a échoué plus
-haut.
+haut, puis se connecter à MariaDB en tant que root et lister de nouveau les
+utilisateurs.
 
 Question : combien d'utilisateurs "newdb" sont présent ? Quels sont leurs 
 paramètres et leurs privilèges ?
