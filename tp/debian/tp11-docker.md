@@ -84,7 +84,22 @@ commande `docker ps`. Cet ID est aussi ce qui remplace le nom de la machine
 dans le prompt.
 
 De retour sur l'autre terminal, on peut maintenant "éteindre" le conteneur via
-la commande `docker kill <id>`
+la commande `docker kill <id>`.
+
+Lancer maintenant la commande `docker ps -a` et conserver sa sortie.
+Lancer la commande `docker run --rm -it debian /bin/bash`, puis quitter le
+conteneur.
+
+Question : quel est le résultat ?
+
+Une dernière option de base parfois pratique, la possibilité de nommer son
+conteneur avec l'option `--name`.
+
+Lancer maintenant `docker run -it debian /bin/bash --name debianbash`, puis
+détacher la session via le raccourci clavier Ctrl+p. Utiliser `docker ps` pour
+visualiser les conteneurs en cours d'exécution.
+
+Question : qu'observe-t'on ?
 
 ## Etape 2 : un service réseau dans le conteneur
 
@@ -239,7 +254,7 @@ docker run -it -v volume02:/media:ro debian /bin/bash
 ```
 
 Laisser ce conteneur en fonctionnement. Depuis un autre terminal sur `server13`,
-lancer un autre conteneur montant `volume02` en écriture. Ajouter du contenu
+lancer un autre conteneur montant `volume02` en écriture (`rw` au lieu de `ro`). Ajouter du contenu
 dans `hello2.txt` depuis ce conteneur et vérifier que le contenu est bien
 actualisé dans le conteneur "en lecture seule".
 

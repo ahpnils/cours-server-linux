@@ -79,7 +79,7 @@ Questions :
 - regarder les logs d'accès sur server11, quelle est la machine qui a accédé à
   son site web ?
 
-Sur server13; éditer le fichier de configuration `/etc/hosts/` et ajouter la ligne suivante :
+Sur server13, éditer le fichier de configuration `/etc/hosts/` et ajouter la ligne suivante :
 
 ```
 10.13.37.11 server11 server11.example.com www11.example.com
