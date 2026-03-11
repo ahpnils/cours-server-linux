@@ -44,7 +44,8 @@ Se connecter sur server11 et passer root. Créer l'arborescence suivante :
 
 Ajouter un fichier `index.html` au contenu libre dans le répertoire `public`.
 
-Transférer le fichier `nginx/server11.example.com.conf` de ce dépôt dans le
+Transférer le fichier
+[`nginx/server11.example.com.conf`](https://github.com/ahpnils/cours-server-linux/blob/main/nginx/server11.example.com.conf) de ce dépôt dans le
 répertoire `/etc/nginx/sites-available/` de server11.
 
 À l'aide d'un navigateur, visiter les URLs suivantes :
