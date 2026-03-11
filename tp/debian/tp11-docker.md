@@ -40,8 +40,8 @@ root ou utiliser sudo.
 
 Pour démarrer un premier conteneur, il faut d'abord avoir une image contenant
 le système. Comme les machines virtuelles sont sous Debian, télécharger une
-image basique de conteneur Debian avec la commande suivante (toujours en tant
-que root) : `docker pull debian `
+image basique de conteneur Debian avec la commande suivante : `docker pull
+debian`.
 
 Une fois l'image téléchargée, lancer un premier conteneur de type "Hello World"
 :
@@ -105,7 +105,7 @@ Question : qu'observe-t'on ?
 
 Docker permet aussi de disposer de conteneur contenant des services prêt à
 déployer, comme par exemple Nginx. Télécharger l'image officielle Nginx via la
-commande `docker pull nginx` (en tant que root). On peut vérifier la listes des
+commande `docker pull nginx`. On peut vérifier la listes des
 images installées sur notre système via la commande `docker image ls`.
 
 Exécuter ensuite le conteneur via la commande `docker run -it -p 8080:80
