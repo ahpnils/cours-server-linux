@@ -55,7 +55,7 @@ Se connecter sur server13 et passer root. Créer l'aborescence suivante :
 
 Ajouter un fichier `index.html` au contenu libre dans le répertoire `public`.
 
-Transférer le fichier `nginx/server13.example.com.conf` de ce dépôt dans le
+Transférer le fichier [`nginx/server13.example.com.conf`](../../nginx/server13.example.com.conf) de ce dépôt dans le
 répertoire `/etc/nginx/sites-enabled/` de server13.
 
 Vérifier ensuite que http://server13.example.com fonctionne bien et renvoie

@@ -77,9 +77,7 @@ le nom `www13.example.com`.
 ## Etape 1 : configuration virtual host HTTPS
 
 La simple création d'un certificat ne suffit pas à avoir un site HTTPS. Il nous
-faut aussi créer un virtual host. Dans le répertoire `nginx` de ce dépôt se
-trouve le fichier `ssl_www13.example.com.conf`. Le transférer sur `server13`
-dans l'emplacement `/etc/nginx/sites-enabled`. Redémarrer Nginx.
+faut aussi créer un virtual host. Transférer le fichier [`ssl_www13.example.com.conf`](../../nginx/ssl_www13.example.com.conf) sur `server13` dans l'emplacement `/etc/nginx/sites-enabled`. Redémarrer Nginx.
 
 Visiter http://server13.example.com puis https://server13.example.com, en
 autorisant le navigateur à s'y connecter.

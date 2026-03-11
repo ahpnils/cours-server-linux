@@ -80,7 +80,7 @@ caractéristiques sont les suivantes :
 - il faut créer un groupe de même nom ;
 - son shell est `/sbin/nologin`.
 
-Ensuite, transférer le fichier [`fpm/server11.conf`](https://github.com/ahpnils/cours-server-linux/blob/main/fpm/server11.conf) de ce dépôt dans le répertoire
+Ensuite, transférer le fichier [`fpm/server11.conf`](../../fpm/server11.conf) de ce dépôt dans le répertoire
 `/etc/php/8.4/fpm/pool.d`. Avec la commande `usermod`, ajouter l'utilisateur `www-data` (utilisé par nginx)
 au groupe `server11` afin d'autoriser l'accès en lecture et écriture au fichier
 `server11.sock`. Relancer le service `php8.4-fpm`, puis vérifier que
