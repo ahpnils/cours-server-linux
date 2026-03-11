@@ -95,7 +95,7 @@ Question : quel est le résultat ?
 Une dernière option de base parfois pratique, la possibilité de nommer son
 conteneur avec l'option `--name`.
 
-Lancer maintenant `docker run -it debian /bin/bash --name debianbash`, puis
+Lancer maintenant `docker run -it --name yolo debian /bin/bash`, puis
 détacher la session via le raccourci clavier Ctrl+p. Utiliser `docker ps` pour
 visualiser les conteneurs en cours d'exécution.
 
